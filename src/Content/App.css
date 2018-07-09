@@ -1,0 +1,23 @@
+.App {
+  padding: 0;
+  margin: 0;
+}
+
+.charCard{
+  padding:0;
+  padding-top: 10px;
+}
+
+.charImg{
+margin:auto;
+width:100px;
+display:block;
+}
+
+.initList {
+  margin:2.5rem;
+}
+
+.fa-arrow-circle-right, .fa-arrow-circle-left{
+  color:#343a40;
+}
