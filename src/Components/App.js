@@ -23,7 +23,9 @@ class App extends Component {
         charImg: "https://i.pinimg.com/originals/6c/0a/f9/6c0af91e8c7b7c8607091a755dcc483c.png"
       },
     ],
-    charList: []
+    charList: [],
+    charListBeginning: 0,
+    charListEnd: 6
   }
 
   render() {
@@ -31,7 +33,7 @@ class App extends Component {
       <div className="App container-fluid text-center">
         <header className="navbar navbar-dark bg-dark">
           <a href="#" className="navbar-brand">Welcome to Initiative-Tracker</a>
-          <i class="fa fa-spinner fa-pulse" style={{color:'#FFF'}}></i>
+          <i class="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
         </header>
         <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
         <NewCharacterForm onSubmit={this.addNewChar} />
@@ -39,35 +41,42 @@ class App extends Component {
     )
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.setState({
-      charList: this.sortCharList(this.state.characters)
+      charList: this.sortCharList(this.state.characters).slice(this.state.charListBeginning, this.state.charListEnd)
     })
   }
 
   addNewChar = (charInput) => {
 
     charInput.charImg = this.checkCharImg(charInput.charImg);
-  
+
     this.setState(prevState => ({
-      characters: prevState.characters.concat(charInput),
-      charList: this.sortCharList(prevState.characters.concat(charInput))
+      characters: prevState.characters.concat(charInput)
     }))
+
+    this.refreshCharList();
   };
-  
+
+  refreshCharList = () => {
+    this.setState(prevState => ({
+      charList: this.sortCharList(prevState.characters).slice(this.state.charListBeginning, this.state.charListEnd)
+    }))
+  }
+
   checkCharImg = (charImg) => {
-      if(charImg === ''){
-        return "http://vopool.net/images/diger.png";
-      }
-      return charImg;
+    if (charImg === '') {
+      return "http://vopool.net/images/diger.png";
+    }
+    return charImg;
   };
-  
-  updateCharList = (direction) => { //remove first character and add next up character
-    switch(direction){
+
+  updateCharList = (direction) => { //remove character and add next character
+    switch (direction) {
       case 'forward':
-        this.removeChar(0)
+        this.removeChar(0);
       case 'back':
-        this.removeChar(this.state.charList.length - 1)
+        this.removeChar(this.state.charList.length - 1);
     }
   };
 
@@ -78,7 +87,7 @@ class App extends Component {
   };
 
   sortCharList = (charList) => {
-    return charList.sort(function(a, b){
+    return charList.sort(function (a, b) {
       return a.order - b.order
     });
   }
