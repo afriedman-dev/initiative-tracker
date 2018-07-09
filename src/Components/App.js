@@ -6,7 +6,7 @@ import NewCharacterForm from './NewCharacterForm';
 //App module for handling the app data state and components
 class App extends Component {
   state = {
-    characterList: [
+    characters: [
       {
         name: "Thorin Strongbeard",
         order: 4,
@@ -19,27 +19,12 @@ class App extends Component {
       },
       {
         name: "Elrik Battleborne",
-        order: 2,
+        order: 5,
         charImg: "https://i.pinimg.com/originals/6c/0a/f9/6c0af91e8c7b7c8607091a755dcc483c.png"
       },
-    ]
+    ],
+    charList: []
   }
-
-  addNewChar = (charInput) => {
-
-    charInput.charImg = this.checkCharImg(charInput.charImg);
-
-    this.setState(prevState => ({
-      characterList: prevState.characterList.concat(charInput)
-    }))
-  };
-
-  checkCharImg = (charImg) => {
-      if(charImg == ''){
-        return "http://vopool.net/images/diger.png";
-      }
-      return charImg;
-  };
 
   render() {
     return (
@@ -48,10 +33,54 @@ class App extends Component {
           <a href="#" className="navbar-brand">Welcome to Initiative-Tracker</a>
           <i class="fa fa-spinner fa-pulse" style={{color:'#FFF'}}></i>
         </header>
-        <InitiativeList chars={this.state.characterList} />
+        <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
         <NewCharacterForm onSubmit={this.addNewChar} />
       </div>
     )
+  }
+
+  componentWillMount(){
+    this.setState({
+      charList: this.sortCharList(this.state.characters)
+    })
+  }
+
+  addNewChar = (charInput) => {
+
+    charInput.charImg = this.checkCharImg(charInput.charImg);
+  
+    this.setState(prevState => ({
+      characters: prevState.characters.concat(charInput),
+      charList: this.sortCharList(prevState.characters.concat(charInput))
+    }))
+  };
+  
+  checkCharImg = (charImg) => {
+      if(charImg === ''){
+        return "http://vopool.net/images/diger.png";
+      }
+      return charImg;
+  };
+  
+  updateCharList = (direction) => { //remove first character and add next up character
+    switch(direction){
+      case 'forward':
+        this.removeChar(0)
+      case 'back':
+        this.removeChar(this.state.charList.length - 1)
+    }
+  };
+
+  removeChar = (index) => {
+    this.setState(prevState => ({
+      charList: prevState.charList.filter((_, i) => i !== index)
+    }))
+  };
+
+  sortCharList = (charList) => {
+    return charList.sort(function(a, b){
+      return a.order - b.order
+    });
   }
 }
 

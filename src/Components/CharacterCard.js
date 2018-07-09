@@ -3,7 +3,7 @@ import React from 'react';
 //basic character card
 const CharacterCard = (props) => {
 
-    let classList = "col ml-auto order-" + props.order;
+    let classList = "col ml-auto order-a" + props.order;
 
     return (
         <div className={classList}>
