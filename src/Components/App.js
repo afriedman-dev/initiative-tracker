@@ -85,7 +85,7 @@ class App extends Component {
   Header = () => {
     return (
       <nav className="navbar navbar-dark bg-dark">
-        <span className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</span>
+        <Link to="/" className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</Link>
         <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
       </nav>)
   }
