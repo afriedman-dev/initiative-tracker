@@ -13,9 +13,9 @@ const CharacterCard = (props) => {
                     <h5 className="card-title">{props.name}</h5>
                 </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">AC: 16</li>
-                    <li className="list-group-item">HP: 25</li>
-                    <li className="list-group-item">Attack: +7</li>
+                    <li className="list-group-item"><strong>AC:</strong> {props.armor}</li>
+                    <li className="list-group-item"><strong>HP:</strong> {props.health}</li>
+                    <li className="list-group-item"><strong>Attack:</strong> {props.attack}</li>
                 </ul>
                 <a href="#" className="card-link btn btn-secondary"><i className="fa fa-pencil-alt" aria-hidden="true"></i> Edit</a>
             </div>
