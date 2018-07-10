@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, withRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import '../Content/App.css';
 import InitiativeList from './InitiativeList';
 import NewCharacterForm from './NewCharacterForm';
@@ -132,6 +132,7 @@ class App extends Component {
       case 'back':
         this.decrementCharList();
         break;
+      default: return;
     }
     this.calcProgress();
   };
