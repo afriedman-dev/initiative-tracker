@@ -77,15 +77,15 @@ class App extends Component {
   updateCharList = (direction) => { //remove character and add next character
     switch (direction) {
       case 'forward':
-        this.incrementSlicedList();
+        this.incrementCharList();
         break;
       case 'back':
-        this.removeChar(this.state.charList.length - 1);
+        this.decrementCharList();
         break;
     }
   };
 
-  incrementSlicedList = () => {
+  incrementCharList = () => {
     let tempList = this.state.charList;
     tempList.shift();
 
@@ -94,13 +94,34 @@ class App extends Component {
     tempList.push(this.state.characters[this.state.charListIndex]);
 
     this.setState(prevState => ({
-      charList:tempList,
+      charList: tempList,
       charListIndex: prevState.charListIndex + increment
     }))
   };
 
-  resetIndex = () =>{
-    if(this.state.charListIndex === this.state.characters.length-1){
+  decrementCharList = () => {
+    let tempList = this.state.charList;
+    tempList.pop();
+
+    let newIndex = this.state.charListIndex - 1;
+
+    if (newIndex === -1) {
+      newIndex = this.state.characters.length - 1;
+    }
+
+    tempList.unshift(this.state.characters[newIndex]);
+
+    this.setState(prevState => ({
+      charList: tempList,
+      charListIndex: newIndex
+    }))
+  };
+
+  resetIndex = () => {
+    let len = this.state.characters.length - 1;
+    let curInd = this.state.charListIndex;
+
+    if (curInd === len) {
       this.setState(prevState => ({
         charListIndex: 0
       }))
@@ -119,7 +140,7 @@ class App extends Component {
     this.setState(prevState => ({
       charList: prevState.charList.filter((_, i) => i !== index)
     }))
-    
+
     this.updateCharList();
   };
 }
