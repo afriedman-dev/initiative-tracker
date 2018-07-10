@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div className="App container-fluid text-center">
         <header className="navbar navbar-dark bg-dark">
-          <a href="#" className="navbar-brand">Welcome to Initiative-Tracker</a>
+          <span className="navbar-brand">Welcome to Initiative-Tracker</span>
           <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
         </header>
         <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
@@ -50,11 +50,11 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const charListBeginning = 0;
-    const charListEnd = 7;
+    const beg = 0;
+    const end = 7;
 
     this.setState({
-      charList: this.sortCharList(this.state.characters).slice(charListBeginning, charListEnd)
+      charList: this.sortCharList(this.state.characters).slice(beg, end)
     })
   }
 
@@ -66,12 +66,12 @@ class App extends Component {
       characters: prevState.characters.concat(charInput)
     }))
 
-    this.refreshCharList();
+    this.refreshCharList(0, 7);
   };
 
-  refreshCharList = () => {
+  refreshCharList = (beg, end) => {
     this.setState(prevState => ({
-      charList: this.sortCharList(prevState.characters).slice(this.state.charListBeginning, this.state.charListEnd),
+      charList: this.sortCharList(prevState.characters).slice(beg, end),
       charListIndex: 0
     }))
   }
@@ -95,12 +95,14 @@ class App extends Component {
   };
 
   incrementCharList = () => {
-    let tempList = this.state.charList;
+    const {characters, charList, charListIndex} = this.state;
+
+    let tempList = charList;
     tempList.shift();
 
     let increment = this.resetIndex();
 
-    tempList.push(this.state.characters[this.state.charListIndex]);
+    tempList.push(characters[charListIndex]);
 
     this.setState(prevState => ({
       charList: tempList,
@@ -109,16 +111,18 @@ class App extends Component {
   };
 
   decrementCharList = () => {
-    let tempList = this.state.charList;
+    const {characters, charList, charListIndex} = this.state;
+
+    let tempList = charList;
     tempList.pop();
 
-    let newIndex = this.state.charListIndex - 1;
+    let newIndex = charListIndex - 1;
 
     if (newIndex === -1) {
-      newIndex = this.state.characters.length - 1;
+      newIndex = characters.length - 1;
     }
 
-    tempList.unshift(this.state.characters[newIndex]);
+    tempList.unshift(characters[newIndex]);
 
     this.setState(prevState => ({
       charList: tempList,

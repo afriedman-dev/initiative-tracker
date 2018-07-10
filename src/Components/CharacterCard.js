@@ -15,9 +15,9 @@ const CharacterCard = (props) => {
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><strong>AC:</strong> {props.armor}</li>
                     <li className="list-group-item"><strong>HP:</strong> {props.health}</li>
-                    <li className="list-group-item"><strong>Attack:</strong> {props.attack}</li>
+                    <li className="list-group-item"><strong>ATTACK:</strong> {props.attack}</li>
                 </ul>
-                <a href="#" className="card-link btn btn-secondary"><i className="fa fa-pencil-alt" aria-hidden="true"></i> Edit</a>
+                <button className="card-link btn btn-secondary"><i className="fa fa-pencil-alt" aria-hidden="true"></i> Edit</button>
             </div>
         </div>
     );
