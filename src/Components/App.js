@@ -24,8 +24,7 @@ class App extends Component {
       },
     ],
     charList: [],
-    charListBeginning: 0,
-    charListEnd: 6
+    charListIndex: 0
   }
 
   render() {
@@ -33,7 +32,7 @@ class App extends Component {
       <div className="App container-fluid text-center">
         <header className="navbar navbar-dark bg-dark">
           <a href="#" className="navbar-brand">Welcome to Initiative-Tracker</a>
-          <i class="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
+          <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
         </header>
         <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
         <NewCharacterForm onSubmit={this.addNewChar} />
@@ -42,8 +41,11 @@ class App extends Component {
   }
 
   componentWillMount() {
+    const charListBeginning = 0;
+    const charListEnd = 7;
+
     this.setState({
-      charList: this.sortCharList(this.state.characters).slice(this.state.charListBeginning, this.state.charListEnd)
+      charList: this.sortCharList(this.state.characters).slice(charListBeginning, charListEnd)
     })
   }
 
@@ -60,7 +62,8 @@ class App extends Component {
 
   refreshCharList = () => {
     this.setState(prevState => ({
-      charList: this.sortCharList(prevState.characters).slice(this.state.charListBeginning, this.state.charListEnd)
+      charList: this.sortCharList(prevState.characters).slice(this.state.charListBeginning, this.state.charListEnd),
+      charListIndex: 0
     }))
   }
 
@@ -74,23 +77,51 @@ class App extends Component {
   updateCharList = (direction) => { //remove character and add next character
     switch (direction) {
       case 'forward':
-        this.removeChar(0);
+        this.incrementSlicedList();
+        break;
       case 'back':
         this.removeChar(this.state.charList.length - 1);
+        break;
     }
   };
 
-  removeChar = (index) => {
+  incrementSlicedList = () => {
+    let tempList = this.state.charList;
+    tempList.shift();
+
+    let increment = this.resetIndex();
+
+    tempList.push(this.state.characters[this.state.charListIndex]);
+
     this.setState(prevState => ({
-      charList: prevState.charList.filter((_, i) => i !== index)
+      charList:tempList,
+      charListIndex: prevState.charListIndex + increment
     }))
   };
+
+  resetIndex = () =>{
+    if(this.state.charListIndex === this.state.characters.length-1){
+      this.setState(prevState => ({
+        charListIndex: 0
+      }))
+      return 0;
+    }
+    return 1;
+  }
 
   sortCharList = (charList) => {
     return charList.sort(function (a, b) {
       return a.order - b.order
     });
   }
+
+  removeChar = (index) => {
+    this.setState(prevState => ({
+      charList: prevState.charList.filter((_, i) => i !== index)
+    }))
+    
+    this.updateCharList();
+  };
 }
 
 export default App;
