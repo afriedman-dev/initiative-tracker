@@ -4,7 +4,7 @@ import CharacterCard from './CharacterCard';
 //Initiative List mapping all characters passed in
 const InitiativeList = (props) => {
     return (
-        <div className="initList row">
+        <div className="initList col row align-items-center">
             <div className="col-1" onClick={() => props.updateCharList('back')}>
                 <i className="fa fa-arrow-circle-left fa-2x col btn" aria-hidden="true"></i>
             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Content/App.css';
 import InitiativeList from './InitiativeList';
 import NewCharacterForm from './NewCharacterForm';
+import TurnCounter from './TurnCounter';
 
 //App module for handling the app data state and components
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
         name: "Thorin Strongbeard",
         order: 4,
         charImg: "https://i.pinimg.com/736x/7c/c7/aa/7cc7aa6b6fd0d30b2ab78eabcd44c94e--dwarf-apocalypse.jpg",
-        armor:16,
+        armor: 16,
         health: 25,
         attack: "+7, 2d6+4"
       },
@@ -19,7 +20,7 @@ class App extends Component {
         name: "Minotaur",
         order: 3,
         charImg: "https://s-media-cache-ak0.pinimg.com/originals/20/ee/fc/20eefc59de0bd9d75a2b4889c18504bc.png",
-        armor:14,
+        armor: 14,
         health: 32,
         attack: "+8, 1d10+5"
       },
@@ -27,24 +28,34 @@ class App extends Component {
         name: "Elrik Battleborne",
         order: 5,
         charImg: "https://i.pinimg.com/originals/6c/0a/f9/6c0af91e8c7b7c8607091a755dcc483c.png",
-        armor:18,
+        armor: 18,
         health: 28,
         attack: "+6, 2d6+4 +1d4 fire"
       },
     ],
     charList: [],
-    charListIndex: 0
+    charListIndex: 0,
+    turn: 0
   }
 
   render() {
     return (
-      <div className="App container-fluid text-center">
-        <header className="navbar navbar-dark bg-dark">
-          <span className="navbar-brand">Welcome to Initiative-Tracker</span>
+      <div className="App">
+        <nav className="navbar navbar-dark bg-dark">
+          <span className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</span>
           <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
-        </header>
-        <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
-        <NewCharacterForm onSubmit={this.addNewChar} />
+        </nav>
+        <div className="container-fluid text-center">
+          <div className="row">
+            <div className="offset-1 col-1 col-sm-2 col-xs-2" style={{"margin-top": "2rem"}}>
+              <TurnCounter turn={this.state.turn} />
+            </div>
+          </div>
+          <div className="row">
+            <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
+          </div>
+          <NewCharacterForm onSubmit={this.addNewChar} />
+        </div>
       </div>
     )
   }
@@ -95,7 +106,7 @@ class App extends Component {
   };
 
   incrementCharList = () => {
-    const {characters, charList, charListIndex} = this.state;
+    const { characters, charList, charListIndex } = this.state;
 
     let tempList = charList;
     tempList.shift();
@@ -111,7 +122,7 @@ class App extends Component {
   };
 
   decrementCharList = () => {
-    const {characters, charList, charListIndex} = this.state;
+    const { characters, charList, charListIndex } = this.state;
 
     let tempList = charList;
     tempList.pop();
@@ -120,6 +131,7 @@ class App extends Component {
 
     if (newIndex === -1) {
       newIndex = characters.length - 1;
+      this.updateTurnCount(-1);
     }
 
     tempList.unshift(characters[newIndex]);
@@ -138,9 +150,16 @@ class App extends Component {
       this.setState(prevState => ({
         charListIndex: 0
       }))
+      this.updateTurnCount(1);
       return 0;
     }
     return 1;
+  }
+
+  updateTurnCount = (val) => {
+    this.setState(prevState => ({
+      turn: prevState.turn + val
+    }))
   }
 
   sortCharList = (charList) => {
