@@ -36,7 +36,8 @@ class App extends Component {
     ],
     charList: [],
     charListIndex: 0,
-    turn: 0
+    turn: 0,
+    progress: 0
   }
 
   render() {
@@ -57,7 +58,7 @@ class App extends Component {
         <div className="container-fluid text-center">
           <div className="row">
             <div className="offset-1 col-1 col-sm-2 col-xs-2" style={{ "marginTop": "2rem" }}>
-              <TurnCounter turn={this.state.turn} />
+              <TurnCounter turn={this.state.turn} progress={this.state.progress} />
             </div>
           </div>
           <div className="row">
@@ -96,6 +97,7 @@ class App extends Component {
     this.setState({
       charList: this.sortCharList(this.state.characters).slice(beg, end)
     })
+    this.calcProgress();
   }
 
   addNewChar = (charInput) => {
@@ -112,7 +114,7 @@ class App extends Component {
     this.setState(prevState => ({
       charList: this.sortCharList(prevState.characters).slice(beg, end),
       charListIndex: 0
-    }))
+    }), this.calcProgress())
   }
 
   checkCharImg = (charImg) => {
@@ -131,6 +133,7 @@ class App extends Component {
         this.decrementCharList();
         break;
     }
+    this.calcProgress();
   };
 
   incrementCharList = () => {
@@ -194,6 +197,27 @@ class App extends Component {
     return charList.sort(function (a, b) {
       return a.order - b.order
     });
+  }
+
+  calcProgress = () => {
+    let perc = ((this.state.charListIndex)/this.state.characters.length)*100;
+
+    if (perc > 50){
+      perc = 100;
+    }
+    else if (perc > 25){
+      perc = 75;
+    }
+    else if (perc > 0){
+      perc = 50;
+    }
+    else{
+      perc = 25;
+    }
+    
+    this.setState(prevState => ({
+      progress: perc
+    }))
   }
 
   removeChar = (index) => {

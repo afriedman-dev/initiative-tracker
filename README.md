@@ -6,7 +6,6 @@ TODO:
  - Allow users to pick images from dropdown list
  - Allow users to drag/drop cards from side menu
  - Add expandable character details to bottom of card
- - Add navigation
  - Enable editing of cards/characters
  - Reformat character cards to host more relevant info
 
