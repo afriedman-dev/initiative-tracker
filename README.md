@@ -1,8 +1,6 @@
 ## Initiative Tracker README
 TODO:
- - Add turn counter
  - Add vertical bar before the first character to show the start of initiative order
- - Add styling to the current char card to indicate it is their turn
  - Track conditions and auto update with turn count
     - Two clicks to add, optional timer, one click to remove
  - Allow users to pick images from dropdown list

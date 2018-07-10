@@ -3,11 +3,16 @@ import React from 'react';
 //basic character card
 const CharacterCard = (props) => {
 
-    let classList = "col ml-auto order-a" + props.order;
+    let classList = "col ml-auto";
+    let cardClass = "charCard card";
+
+    if(props.index === 0){
+        cardClass += " current-card";
+    }
 
     return (
         <div className={classList}>
-            <div className="charCard card">
+            <div className={cardClass}>
                 <img className="charImg card-img-top" src={props.charImg} alt="Character Card" />
                 <div className="card-body">                
                     <h5 className="card-title">{props.name}</h5>

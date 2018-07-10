@@ -9,7 +9,7 @@ const InitiativeList = (props) => {
                 <i className="fa fa-arrow-circle-left fa-2x col btn" aria-hidden="true"></i>
             </div>
             <div className="col-10 row">
-                {props.chars.map((char, i) => <CharacterCard key={i} {...char} />)}
+                {props.chars.map((char, i) => <CharacterCard key={i} {...char} index={i} />)}
             </div>
             <div className="col-1" onClick={() => props.updateCharList('forward')}>
                 <i className="fa fa-arrow-circle-right fa-2x col btn" aria-hidden="true"></i>
