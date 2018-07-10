@@ -43,6 +43,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <React.Fragment>
+          <Route path="/" component={this.Header} />
           <Route exact path="/" component={this.AppWrapper} />
           <Route exact path="/add" component={this.NewCharacterFormWrapper} />
         </React.Fragment>
@@ -53,10 +54,6 @@ class App extends Component {
   AppWrapper = () => {
     return (
       <div className="App">
-        <nav className="navbar navbar-dark bg-dark">
-          <span className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</span>
-          <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
-        </nav>
         <div className="container-fluid text-center">
           <div className="row">
             <div className="offset-1 col-1 col-sm-2 col-xs-2" style={{ "marginTop": "2rem" }}>
@@ -77,7 +74,19 @@ class App extends Component {
   }
 
   NewCharacterFormWrapper = () => {
-    return (<NewCharacterForm onSubmit={this.addNewChar} />)
+    return (
+      <div className="col offset-3" style={{"marginTop":"2.5rem"}}>
+        <NewCharacterForm onSubmit={this.addNewChar} />
+      </div>
+    )
+  }
+
+  Header = () => {
+    return (
+      <nav className="navbar navbar-dark bg-dark">
+        <span className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</span>
+        <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
+      </nav>)
   }
 
   componentWillMount() {
