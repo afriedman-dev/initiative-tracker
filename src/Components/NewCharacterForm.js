@@ -1,7 +1,8 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 //Form component for adding new characters
-class NewCharacterForm extends React.Component {
+const NewCharacterForm = withRouter(class NewCharacterForm extends React.Component {
     state = {
         charNameInput: '',
         charImgInput: '',
@@ -21,6 +22,9 @@ class NewCharacterForm extends React.Component {
             health: this.state.health,
             attack: this.state.attack
         });
+
+        this.props.history.push('/');
+
         this.setState({
             charNameInput: '', charImgInput: '', order: '',
             armor: '', health: '', attack: ''
@@ -77,6 +81,6 @@ class NewCharacterForm extends React.Component {
             </div>
         )
     }
-}
+})
 
 export default NewCharacterForm;

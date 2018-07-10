@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, withRouter } from 'react-router-dom';
 import '../Content/App.css';
 import InitiativeList from './InitiativeList';
 import NewCharacterForm from './NewCharacterForm';
@@ -40,6 +41,17 @@ class App extends Component {
 
   render() {
     return (
+      <BrowserRouter>
+        <React.Fragment>
+          <Route exact path="/" component={this.AppWrapper} />
+          <Route exact path="/add" component={this.NewCharacterFormWrapper} />
+        </React.Fragment>
+      </BrowserRouter>
+    )
+  }
+
+  AppWrapper = () => {
+    return (
       <div className="App">
         <nav className="navbar navbar-dark bg-dark">
           <span className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</span>
@@ -47,17 +59,25 @@ class App extends Component {
         </nav>
         <div className="container-fluid text-center">
           <div className="row">
-            <div className="offset-1 col-1 col-sm-2 col-xs-2" style={{"margin-top": "2rem"}}>
+            <div className="offset-1 col-1 col-sm-2 col-xs-2" style={{ "marginTop": "2rem" }}>
               <TurnCounter turn={this.state.turn} />
             </div>
           </div>
           <div className="row">
             <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
           </div>
-          <NewCharacterForm onSubmit={this.addNewChar} />
+          <div className="row">
+            <div className="col-2 offset-1">
+              <Link to="/add" className="btn-lg btn-primary">Add Character</Link>
+            </div>
+          </div>
         </div>
       </div>
     )
+  }
+
+  NewCharacterFormWrapper = () => {
+    return (<NewCharacterForm onSubmit={this.addNewChar} />)
   }
 
   componentWillMount() {
@@ -70,7 +90,6 @@ class App extends Component {
   }
 
   addNewChar = (charInput) => {
-
     charInput.charImg = this.checkCharImg(charInput.charImg);
 
     this.setState(prevState => ({
