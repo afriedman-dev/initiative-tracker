@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import '../Content/App.css';
-import InitiativeList from './InitiativeList';
-import NewCharacterForm from './NewCharacterForm';
-import TurnCounter from './TurnCounter';
+import InitiativeList from './initiative-tracker/InitiativeList';
+import NewCharacterForm from './add/NewCharacterForm';
+import TurnCounter from './initiative-tracker/TurnCounter';
 
 //App module for handling the app data state and components
 class App extends Component {
