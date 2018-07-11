@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, { Component, PropTypes } from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
 import '../Content/App.css';
-import InitiativeList from './initiative-tracker/InitiativeList';
-import NewCharacterForm from './add/NewCharacterForm';
-import TurnCounter from './initiative-tracker/TurnCounter';
+import Header from './common/Header';
+import NewCharacterFormPage from './add/NewCharacterFormPage';
+import InitiativeTrackerPage from './initiative-tracker/InitiativeTrackerPage';
 
 //App module for handling the app data state and components
 class App extends Component {
@@ -42,52 +42,29 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <React.Fragment>
-          <Route path="/" component={this.Header} />
-          <Route exact path="/" component={this.AppWrapper} />
-          <Route exact path="/add" component={this.NewCharacterFormWrapper} />
-        </React.Fragment>
-      </BrowserRouter>
-    )
-  }
-
-  AppWrapper = () => {
-    return (
       <div className="App">
-        <div className="container-fluid text-center">
-          <div className="row">
-            <div className="offset-1 col-1 col-sm-2 col-xs-2" style={{ "marginTop": "2rem" }}>
-              <TurnCounter turn={this.state.turn} progress={this.state.progress} />
+        <BrowserRouter>
+          <React.Fragment>
+            <Header />
+            <div className="container-fluid text-center">
+            
+              <Route exact path="/"
+                render={() =>
+                  <InitiativeTrackerPage
+                    turn={this.state.turn}
+                    progress={this.state.progress}
+                    charList={this.state.charList}
+                    updateCharList={this.updateCharList} />} />
+
+              <Route exact path="/add" render={() =>
+                <NewCharacterFormPage
+                  addNewChar={this.addNewChar} />} />
+
             </div>
-          </div>
-          <div className="row">
-            <InitiativeList chars={this.state.charList} updateCharList={this.updateCharList} />
-          </div>
-          <div className="row">
-            <div className="col-2 offset-1">
-              <Link to="/add" className="btn-lg btn-primary">Add Character</Link>
-            </div>
-          </div>
-        </div>
+          </React.Fragment>
+        </BrowserRouter>
       </div>
     )
-  }
-
-  NewCharacterFormWrapper = () => {
-    return (
-      <div className="col offset-3" style={{"marginTop":"2.5rem"}}>
-        <NewCharacterForm onSubmit={this.addNewChar} />
-      </div>
-    )
-  }
-
-  Header = () => {
-    return (
-      <nav className="navbar navbar-dark bg-dark">
-        <Link to="/" className="navbar-brand mb-0 h1">Welcome to Initiative-Tracker</Link>
-        <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
-      </nav>)
   }
 
   componentWillMount() {
@@ -201,21 +178,21 @@ class App extends Component {
   }
 
   calcProgress = () => {
-    let perc = ((this.state.charListIndex)/this.state.characters.length)*100;
+    let perc = ((this.state.charListIndex) / this.state.characters.length) * 100;
 
-    if (perc > 50){
+    if (perc > 50) {
       perc = 100;
     }
-    else if (perc > 25){
+    else if (perc > 25) {
       perc = 75;
     }
-    else if (perc > 0){
+    else if (perc > 0) {
       perc = 50;
     }
-    else{
+    else {
       perc = 25;
     }
-    
+
     this.setState(prevState => ({
       progress: perc
     }))
@@ -229,5 +206,9 @@ class App extends Component {
     this.updateCharList();
   };
 }
+
+// App.propTypes = {
+//   chidren: PropTypes.object.isRequired
+// };
 
 export default App;
