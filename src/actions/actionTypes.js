@@ -2,6 +2,7 @@
 
 //Character Actions
 export const CREATE_CHARACTER = 'CREATE_CHARACTER';
+export const LOAD_CHARACTERS_SUCCESS = 'LOAD_CHARACTERS_SUCCESS';
 
 //Tracker Actions
 export const ADD_CHARACTER = 'ADD_CHARACTER';

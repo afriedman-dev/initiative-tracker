@@ -19,19 +19,21 @@ class CharacterList extends React.Component {
 
     charRow(char, i) {
         return (
-        <div key={i} className="card col-12" > {/* onClick={this.onCharClick}> */}
-            <h5 className="card-header">
-            <img className="float-left" src={char.charImg} alt="Character sidelist" />
-                <span className="align-middle">{char.name}</span>
-            </h5>
-        </div>
+            <div key={i} className="card col-12" > {/* onClick={this.onCharClick}> */}
+                <h5 className="card-header">
+                    <img className="float-left" src={char.charImg} alt="Character sidelist" />
+                    <span className="align-middle">{char.name}</span>
+                </h5>
+            </div>
         )
     }
 
     render() {
         return (
             <div className="row no-gutters">
-                {this.props.characters.map(this.charRow)}
+                {(!Array.isArray(this.props.characters) || !this.props.characters.length) ?
+                    <i className="fa fa-spinner fa-pulse fa-3x mx-auto mt-5" style={{ color: '#343a40' }}></i> :
+                    this.props.characters.map(this.charRow)}
             </div>
         )
     }

@@ -13,7 +13,6 @@ const Header = () => {
                     <NavLink to="/add" activeClassName="active-link" className="nav-item nav-link">Add Character</NavLink>
                 </div>
             </div>
-            <i className="fa fa-spinner fa-pulse" style={{ color: '#FFF' }}></i>
         </nav>
     )
 };
