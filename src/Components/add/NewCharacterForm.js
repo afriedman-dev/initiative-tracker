@@ -70,9 +70,6 @@ const NewCharacterForm = withRouter(class NewCharacterForm extends React.Compone
         e.preventDefault();
 
         let char = this.state.char;
-
-        this.props.onSubmit(char);
-        //below call replace above call
         this.props.actions.createCharacter(char);
 
         this.props.history.push('/');
