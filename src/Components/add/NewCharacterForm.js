@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -130,15 +130,10 @@ const NewCharacterForm = withRouter(class NewCharacterForm extends React.Compone
                         <button type="submit" className="btn btn-primary"> Add Character </button>
                     </div>
                 </form>
-                {this.props.characters.map((char, i) => <div key={i}> {char.name}</div>)}
             </div>
         )
     }
 })
-
-// NewCharacterForm.propTypes = {
-//     actions: PropTypes.object.isRequired
-// };
 
 function mapStateToProps(state, ownProps){
     return {

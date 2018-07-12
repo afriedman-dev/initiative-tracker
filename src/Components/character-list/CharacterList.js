@@ -1,59 +1,52 @@
-import React, {PropTypes} from 'react';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as characterActions from '../../actions/characterActions';
 
-//Form component for adding new characters
-const NewCharacterForm = withRouter(class NewCharacterForm extends React.Component {
-    constructor(props, context){
+class CharacterList extends React.Component {
+    constructor(props, context) {
         super(props, context);
 
         this.state = {};
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onCharClick = this.onCharClick.bind(this);
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        let char = this.state.char;
-
-        this.props.onSubmit(char);
-        //below call replace above call
+    onCharClick(e) {
+        let char = this.props.characters[e.key];
         this.props.actions.createCharacter(char);
-
-        this.props.history.push('/');
-
-        this.setState({char:{
-            name: '', charImg: '', order: '',
-            armor: '', health: '', attack: ''}
-        });
     };
+
+    charRow(char, i) {
+        return (
+        <div key={i} className="card col-12" > {/* onClick={this.onCharClick}> */}
+            <h5 className="card-header">
+            <img className="float-left" src={char.charImg} alt="Character sidelist" />
+                <span className="align-middle">{char.name}</span>
+            </h5>
+        </div>
+        )
+    }
 
     render() {
         return (
-            <div className="col-6">
-                {this.props.characters.map((char, i) => <div key={i}> {char.name}</div>)}
+            <div className="row no-gutters">
+                {this.props.characters.map(this.charRow)}
             </div>
         )
     }
-})
+}
 
-// NewCharacterForm.propTypes = {
-//     actions: PropTypes.object.isRequired
-// };
-
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state, ownProps) {
     return {
         characters: state.characters
     };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(characterActions, dispatch)
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewCharacterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);

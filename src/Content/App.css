@@ -1,6 +1,7 @@
 .App {
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 .charCard{
@@ -26,6 +27,28 @@
   color:#343a40;
 }
 
+.initList .jumbotron{
+  width: 100%;
+}
+
 .current-card{
   border: 2px dashed #6c757d;
+}
+
+.char-list-container{
+  height: 100%;
+  background-color:#e9ecef;
+  padding: 0;
+}
+
+.char-list-container img{
+  width:50px;
+}
+
+.char-list-container .card{
+  cursor: pointer;
+}
+
+#root{
+  height: 100%;
 }
