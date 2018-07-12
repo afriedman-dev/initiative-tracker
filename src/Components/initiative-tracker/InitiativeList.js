@@ -13,6 +13,8 @@ class InitiativeList extends React.Component {
     }
 
     render() {
+        const {characters} = this.props;
+
         return (
             <div className="initList col row align-items-center">
                 <div className="col-1" onClick={() => this.props.updateCharList('back')}>
@@ -20,14 +22,14 @@ class InitiativeList extends React.Component {
                 </div>
                 <div className="col-10 row">
                     {
-                        (!Array.isArray(this.props.characters) || !this.props.characters.length) ?
+                        (!Array.isArray(characters) || !characters.length) ?
 
                             <div className="jumbotron">
                                 <h1 className="display-4">Please add a character</h1>
                                 <hr className="my-4" />
                                 <p className="lead">Once you add a character the tracker will be active</p>
                             </div> :
-                            this.props.characters.map((char, i) => <CharacterCard key={i} {...char} index={i} />)
+                            characters.map((char, i) => <CharacterCard key={i} {...char} index={i} />)
                     }
 
                 </div>

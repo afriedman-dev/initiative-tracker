@@ -7,8 +7,6 @@ class CharacterList extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {};
-
         this.onCharClick = this.onCharClick.bind(this);
     }
 
@@ -29,11 +27,13 @@ class CharacterList extends React.Component {
     }
 
     render() {
+        const {characters} = this.props;
+
         return (
             <div className="row no-gutters">
-                {(!Array.isArray(this.props.characters) || !this.props.characters.length) ?
+                {(!Array.isArray(characters) || !characters.length) ?
                     <i className="fa fa-spinner fa-pulse fa-3x mx-auto mt-5" style={{ color: '#343a40' }}></i> :
-                    this.props.characters.map(this.charRow)}
+                    characters.map(this.charRow)}
             </div>
         )
     }
