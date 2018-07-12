@@ -79,7 +79,7 @@ class App extends Component {
 
   addNewChar = (charInput) => {
     charInput.charImg = this.checkCharImg(charInput.charImg);
-
+    
     this.setState(prevState => ({
       characters: prevState.characters.concat(charInput)
     }))
