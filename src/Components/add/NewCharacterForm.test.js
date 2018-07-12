@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import NewCharacterForm from './NewCharacterForm';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<NewCharacterForm />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 

@@ -8,10 +8,14 @@
   padding-top: 10px;
 }
 
+.charCard button{
+  border-radius: 0;
+}
+
 .charImg{
-margin:auto;
-width:100px;
-display:block;
+  margin:auto;
+  width:100px;
+  display:block;
 }
 
 .initList {
@@ -20,4 +24,8 @@ display:block;
 
 .fa-arrow-circle-right, .fa-arrow-circle-left{
   color:#343a40;
+}
+
+.current-card{
+  border: 2px dashed #6c757d;
 }
