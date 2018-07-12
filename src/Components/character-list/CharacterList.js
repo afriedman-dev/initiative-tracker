@@ -10,7 +10,7 @@ class CharacterList extends React.Component {
         this.onCharClick = this.onCharClick.bind(this);
     }
 
-    onCharClick(e) {
+    onCharClick = (e) => {
         let char = this.props.characters[e.key];
         this.props.actions.createCharacter(char);
     };

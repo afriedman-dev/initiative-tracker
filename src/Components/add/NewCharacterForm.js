@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as characterActions from '../../actions/characterActions';
+import TextInput from '../common/TextInput';
 
 //Form component for adding new characters
 const NewCharacterForm = withRouter(class NewCharacterForm extends React.Component {
@@ -124,6 +125,14 @@ const NewCharacterForm = withRouter(class NewCharacterForm extends React.Compone
                                 onChange={this.onImgChange}
                                 className="form-control col-8" placeholder="Enter image URL or leave blank for default token" />
                         </div>
+
+                        <TextInput
+                            name="testName"
+                            label="TestLabel"
+                            value="somevalue"
+                            onChange={console.log('changed')}
+                            error={'must be valid'}/>
+
                         <button type="submit" className="btn btn-primary"> Add Character </button>
                     </div>
                 </form>
