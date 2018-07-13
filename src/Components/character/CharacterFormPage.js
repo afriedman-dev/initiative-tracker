@@ -69,14 +69,13 @@ class CharacterFormPage extends React.Component {
         this.props.actions.saveCharacter(this.state.char)
             .then(() => this.redirect())
             .catch(error => {
+                this.setState({saving:false});
                 return error;
             });
     };
 
     redirect() {
-        this.setState({
-            saving: false
-        });
+        this.setState({saving: false});
         this.props.history.push('/');
     }
 

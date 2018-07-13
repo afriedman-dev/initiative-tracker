@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
 import * as characterActions from '../../actions/characterActions';
+import Loader from '../common/Loader';
 
 class CharacterList extends React.Component {
     constructor(props, context) {
@@ -34,7 +35,7 @@ class CharacterList extends React.Component {
         return (
             <div className="row no-gutters">
                 {(!Array.isArray(characters) || !characters.length) ?
-                    <i className="fa fa-spinner fa-pulse fa-3x mx-auto mt-5" style={{ color: '#343a40' }}></i> :
+                    <Loader /> :
                     characters.map(this.charRow)}
             </div>
         )
