@@ -34,7 +34,7 @@ class CharacterList extends React.Component {
 
         return (
             <div className="row no-gutters">
-                {(!Array.isArray(characters) || !characters.length) ?
+                {this.props.loading ?
                     <Loader /> :
                     characters.map(this.charRow)}
             </div>

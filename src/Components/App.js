@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
+import {connect} from 'react-redux';
 import '../Content/App.css';
 import Header from './common/Header';
 import CharacterFormPage from './character/CharacterFormPage';
@@ -29,7 +30,9 @@ class App extends Component {
                     turn={this.state.turn}
                     progress={this.state.progress}
                     charList={this.state.charList}
-                    updateCharList={this.updateCharList} />} />
+                    updateCharList={this.updateCharList} 
+                    loading={this.props.loading}
+                    />} />
 
               <Route exact path="/character" render={() =>
                 <CharacterFormPage />} />
@@ -172,4 +175,10 @@ class App extends Component {
   };
 }
 
-export default App;
+function mapStateToProps(state, ownProps) {
+  return{
+    loading: state.ajaxCallsInProgress > 0
+  };
+}
+
+export default connect(mapStateToProps)(App);

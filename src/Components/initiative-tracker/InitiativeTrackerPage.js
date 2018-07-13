@@ -5,12 +5,15 @@ import TurnCounter from './TurnCounter';
 import CharacterList from '../character-list/CharacterList';
 
 class InitiativeTrackerPage extends Component {
+    constructor(props, context) {
+        super(props, context);
+    }
 
     render() {
         return (
                 <div className="row containing-row">
                     <div className="col-2 char-list-container no-gutters">
-                        <CharacterList />
+                        <CharacterList loading={this.props.loading} />
                     </div>
                     <div className="col-10">
                         <div className="row">
