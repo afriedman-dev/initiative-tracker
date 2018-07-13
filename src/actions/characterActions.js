@@ -1,5 +1,6 @@
 import * as actions from './actionTypes';
 import charactersApi from '../api/mockCharactersApi';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 export function loadCharactersSuccess(characters){
     return { type: actions.LOAD_CHARACTERS_SUCCESS, characters};
@@ -16,6 +17,8 @@ export function updateCharacterSuccess(char){
 //Thunks
 export function loadCharacters(){
     return function(dispatch){
+        dispatch(beginAjaxCall());
+
         return charactersApi.getAllCharacters().then(characters => {
             dispatch(loadCharactersSuccess(characters));
         }).catch(error => {
@@ -26,6 +29,8 @@ export function loadCharacters(){
 
 export function saveCharacter(char){
     return function(dispatch, getState){
+        dispatch(beginAjaxCall());
+        
         return charactersApi.saveCharacter(char).then(savedChar => {
             char.id ? dispatch(updateCharacterSuccess(savedChar)) :
                 dispatch(createCharacterSuccess(savedChar));

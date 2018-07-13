@@ -1,4 +1,5 @@
 export default {
     characters: [],
-    charList: []
+    charList: [],
+    ajaxCallsInProgress: 0
 }
