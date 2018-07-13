@@ -84,7 +84,11 @@ class CharacterFormPage extends React.Component {
         return (
             <div className="col offset-3" style={{ "marginTop": "2.5rem" }}>
                 {this.state.saving ?
-                    <div className="jumbotron col-6"><h1 className="display-4">Saving . . .</h1></div> :
+                    <div className="jumbotron col-6">
+                        <h1 className="display-4">
+                            Saving <i className="fa fa-spinner fa-pulse mx-auto mt-5" style={{ color: '#343a40' }}></i>
+                        </h1>
+                    </div> :
                     <CharacterForm
                         char={this.state.char}
                         onSubmit={this.handleSubmit}
