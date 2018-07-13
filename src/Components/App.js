@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import '../Content/App.css';
 import Header from './common/Header';
-import NewCharacterFormPage from './add/NewCharacterFormPage';
+import CharacterFormPage from './add/CharacterFormPage';
 import InitiativeTrackerPage from './initiative-tracker/InitiativeTrackerPage';
 
 //App module for handling the app data state and components
@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App m-0 p-0">
         <BrowserRouter>
           <React.Fragment>
             <Header />
@@ -32,10 +32,10 @@ class App extends Component {
                     updateCharList={this.updateCharList} />} />
 
               <Route exact path="/character" render={() =>
-                <NewCharacterFormPage />} />
+                <CharacterFormPage />} />
 
               <Route exact path="/character/:id" render={() =>
-                <NewCharacterFormPage />} />
+                <CharacterFormPage />} />
 
             </div>
           </React.Fragment>

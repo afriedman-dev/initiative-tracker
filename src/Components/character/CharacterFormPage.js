@@ -3,9 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as characterActions from '../../actions/characterActions';
-import NewCharacterForm from './NewCharacterForm';
+import CharacterForm from './CharacterForm';
 
-class NewCharacterFormPage extends React.Component {
+class CharacterFormPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -84,7 +84,7 @@ class NewCharacterFormPage extends React.Component {
     render() {
         return (
             <div className="col offset-3" style={{ "marginTop": "2.5rem" }}>
-                <NewCharacterForm
+                <CharacterForm
                     char={this.state.char}
                     onSubmit={this.handleSubmit}
                     onFieldChange={this.onFieldChange}
@@ -109,7 +109,7 @@ function mapStateToProps(state, ownProps) {
     if (charId && state.characters.length > 0) {
         char = getCharacterById(state.characters, charId);
     }
-    
+
     return {
         char: char
     };
@@ -121,4 +121,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewCharacterFormPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CharacterFormPage));

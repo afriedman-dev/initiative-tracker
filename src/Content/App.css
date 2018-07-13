@@ -1,6 +1,4 @@
 .App {
-  padding: 0;
-  margin: 0;
   height: 100%;
 }
 
@@ -45,8 +43,15 @@
   width:50px;
 }
 
-.char-list-container .card{
+#char-list-row, #char-list-row:hover {
   cursor: pointer;
+  text-decoration: none;
+  color:grey;
+}
+
+.char-list-name {
+  display: flex;
+  align-items: center;
 }
 
 #root{

@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 
 //Form component for adding new characters
-const NewCharacterForm = ({char, onSubmit, onFieldChange, errors}) => {
+const CharacterForm = ({char, onSubmit, onFieldChange, errors}) => {
         return (
             <div className="col-6">
                 <form onSubmit={onSubmit} className="card">
@@ -59,4 +59,4 @@ const NewCharacterForm = ({char, onSubmit, onFieldChange, errors}) => {
 }
 
 
-export default NewCharacterForm;
+export default CharacterForm;
