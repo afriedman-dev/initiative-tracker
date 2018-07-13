@@ -51,7 +51,7 @@ const NewCharacterForm = ({char, onSubmit, onFieldChange, errors}) => {
                             placeholder="Enter image URL or leave blank for default token"
                             error={errors.charImg} />
 
-                        <button type="submit" className="btn btn-primary"> Add Character </button>
+                        <button type="submit" className="btn btn-primary"> Save </button>
                     </div>
                 </form>
             </div>

@@ -35,7 +35,7 @@ class App extends Component {
                 <NewCharacterFormPage />} />
 
               <Route exact path="/character/:id" render={() =>
-                <NewCharacterFormPage match={1} />} />
+                <NewCharacterFormPage />} />
 
             </div>
           </React.Fragment>
@@ -52,14 +52,12 @@ class App extends Component {
   }
 
   addNewChar = (charInput) => {
-    charInput.charImg = this.checkCharImg(charInput.charImg);
-
     this.setState(prevState => ({
       characters: prevState.characters.concat(charInput)
     }))
 
     this.refreshCharList(0, 7);
-  };
+  }
 
   refreshCharList = (beg, end) => {
     this.setState(prevState => ({
@@ -67,13 +65,6 @@ class App extends Component {
       charListIndex: 0
     }), this.calcProgress())
   }
-
-  checkCharImg = (charImg) => {
-    if (charImg === '') {
-      return "http://vopool.net/images/diger.png";
-    }
-    return charImg;
-  };
 
   updateCharList = (direction) => { //remove character and add next character
     switch (direction) {
