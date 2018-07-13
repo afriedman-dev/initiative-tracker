@@ -1,8 +1,9 @@
 // Contains constants for all action types
 
 //Character Actions
-export const CREATE_CHARACTER = 'CREATE_CHARACTER';
 export const LOAD_CHARACTERS_SUCCESS = 'LOAD_CHARACTERS_SUCCESS';
+export const CREATE_CHARACTER_SUCCESS = 'CREATE_CHARACTER_SUCCESS';
+export const UPDATE_CHARACTER_SUCCESS = 'UPDATE_CHARACTER_SUCCESS';
 
 //Tracker Actions
 export const ADD_CHARACTER = 'ADD_CHARACTER';

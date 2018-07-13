@@ -22,7 +22,7 @@ class App extends Component {
           <React.Fragment>
             <Header />
             <div className="container-fluid text-center">
-            
+
               <Route exact path="/"
                 render={() =>
                   <InitiativeTrackerPage
@@ -31,9 +31,11 @@ class App extends Component {
                     charList={this.state.charList}
                     updateCharList={this.updateCharList} />} />
 
-              <Route exact path="/add" render={() =>
-                <NewCharacterFormPage
-                  addNewChar={this.addNewChar} />} />
+              <Route exact path="/character" render={() =>
+                <NewCharacterFormPage />} />
+
+              <Route exact path="/character/:id" render={() =>
+                <NewCharacterFormPage match={1} />} />
 
             </div>
           </React.Fragment>
@@ -51,7 +53,7 @@ class App extends Component {
 
   addNewChar = (charInput) => {
     charInput.charImg = this.checkCharImg(charInput.charImg);
-    
+
     this.setState(prevState => ({
       characters: prevState.characters.concat(charInput)
     }))

@@ -26,7 +26,7 @@ const characters= [
   ];
 
   const generateId = (char) => {
-    return char.name.toLowerCase() + '-' + char.order;
+    return char.name.toLowerCase() + '-' + (Math.random() * 10000000000000000);
   };
 
   class CharactersApi {
@@ -38,18 +38,18 @@ const characters= [
           });
       }
 
-      static saveChar(char) {
+      static saveCharacter(char) {
         char = Object.assign({}, char); // to avoid manipulating object passed in.
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             // Simulate server-side validation
-            const minCharNameLength = 3;
+            const minCharNameLength = 2;
             if (char.name.length < minCharNameLength) {
               reject(`Name must be at least ${minCharNameLength} characters.`);
             }
     
             if (char.id) {
-              const existingCharIndex = characters.findIndex(a => a.id == char.id);
+              const existingCharIndex = characters.findIndex(a => a.id === char.id);
               char.splice(existingCharIndex, 1, char);
             } else {
               //Just simulating creation here.
@@ -58,7 +58,7 @@ const characters= [
               char.id = generateId(char);
               characters.push(char);
             }
-    
+
             resolve(char);
           }, 1000);
         });
@@ -68,7 +68,7 @@ const characters= [
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             const indexOfCharToDelete = characters.findIndex(char => {
-                char.id == charId;
+                char.id === charId;
             });
             characters.splice(indexOfCharToDelete, 1);
             resolve();

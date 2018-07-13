@@ -23,7 +23,7 @@ class InitiativeTrackerPage extends Component {
                         </div>
                         <div className="row">
                             <div className="col-3 offset-1">
-                                <Link to="/add" className="btn-lg btn-primary">Add Character</Link>
+                                <Link to="/character" className="btn-lg btn-primary">Add Character</Link>
                             </div>
                         </div>
                     </div>
