@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import '../Content/App.css';
 import Header from './common/Header';
-import CharacterFormPage from './add/CharacterFormPage';
+import CharacterFormPage from './character/CharacterFormPage';
 import InitiativeTrackerPage from './initiative-tracker/InitiativeTrackerPage';
 
 //App module for handling the app data state and components

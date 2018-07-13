@@ -11,7 +11,8 @@ class CharacterFormPage extends React.Component {
 
         this.state = {
             char: Object.assign({}, this.props.char),
-            errors: {}
+            errors: {},
+            saving: false
         };
 
         this.onFieldChange = this.onFieldChange.bind(this);
@@ -21,7 +22,7 @@ class CharacterFormPage extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.char.id != nextProps.char.id) {
             //populate form when existing char is loaded directly
-            this.setState({char: Object.assign({}, nextProps.char)});
+            this.setState({ char: Object.assign({}, nextProps.char) });
         }
     }
 
@@ -57,6 +58,7 @@ class CharacterFormPage extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({ saving: true });
 
         if (!this.formIsValid()) {
             return;
@@ -73,10 +75,7 @@ class CharacterFormPage extends React.Component {
 
     redirect() {
         this.setState({
-            char: {
-                name: '', charImg: '', order: '',
-                armor: '', health: '', attack: ''
-            }
+            saving: false
         });
         this.props.history.push('/');
     }
@@ -84,11 +83,14 @@ class CharacterFormPage extends React.Component {
     render() {
         return (
             <div className="col offset-3" style={{ "marginTop": "2.5rem" }}>
-                <CharacterForm
-                    char={this.state.char}
-                    onSubmit={this.handleSubmit}
-                    onFieldChange={this.onFieldChange}
-                    errors={this.state.errors} />
+                {this.state.saving ?
+                    <div className="jumbotron col-6"><h1 className="display-4">Saving . . .</h1></div> :
+                    <CharacterForm
+                        char={this.state.char}
+                        onSubmit={this.handleSubmit}
+                        onFieldChange={this.onFieldChange}
+                        errors={this.state.errors} />
+                }
             </div>
         );
     }
