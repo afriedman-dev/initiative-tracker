@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import characters from './characterReducer';
-import tracker from './trackerReducer';
+import initiative from './initiativeReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
 const rootReducer = combineReducers({
     characters, 
-    tracker, 
+    initiative, 
     ajaxCallsInProgress
 });
 

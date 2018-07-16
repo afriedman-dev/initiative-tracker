@@ -12,24 +12,24 @@ class InitiativeTrackerPage extends Component {
     render() {
         return (
                 <div className="row containing-row">
-                    <div className="col-2 char-list-container no-gutters">
+                    <section className="col-2 char-list-container no-gutters">
                         <CharacterList loading={this.props.loading} />
-                    </div>
-                    <div className="col-10">
-                        <div className="row">
+                    </section>
+                    <section className="col-10">
+                        <section className="row">
                             <div className="offset-1 col-2 col-sm-3 col-xs-3" style={{ "marginTop": "2rem" }}>
                                 <TurnCounter turn={this.props.turn} progress={this.props.progress} />
                             </div>
-                        </div>
-                        <div className="row">
+                        </section>
+                        <section className="row">
                             <InitiativeList chars={this.props.charList} updateCharList={this.props.updateCharList} />
-                        </div>
-                        <div className="row">
+                        </section>
+                        <section className="row">
                             <div className="col-3 offset-1">
                                 <Link to="/character" className="btn-lg btn-primary">Add Character</Link>
                             </div>
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 </div>
         )
     }

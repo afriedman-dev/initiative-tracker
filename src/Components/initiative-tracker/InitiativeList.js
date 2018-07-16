@@ -2,7 +2,7 @@ import React from 'react';
 import CharacterCard from './CharacterCard';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as trackerActions from '../../actions/trackerActions';
+import * as initiativeActions from '../../actions/initiativeActions';
 
 //Initiative List mapping all characters passed in
 class InitiativeList extends React.Component {
@@ -43,13 +43,13 @@ class InitiativeList extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        characters: state.tracker
+        characters: state.InitiativeList
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(trackerActions, dispatch)
+        actions: bindActionCreators(initiativeActions, dispatch)
     };
 }
 

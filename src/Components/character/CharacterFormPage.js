@@ -81,7 +81,7 @@ class CharacterFormPage extends React.Component {
 
     render() {
         return (
-            <div className="col offset-3" style={{ "marginTop": "2.5rem" }}>
+            <section className="col offset-3" style={{ "marginTop": "2.5rem" }}>
                 {this.state.saving ?
                     <div className="jumbotron col-6">
                         <h1 className="display-4">
@@ -94,7 +94,7 @@ class CharacterFormPage extends React.Component {
                         onFieldChange={this.onFieldChange}
                         errors={this.state.errors} />
                 }
-            </div>
+            </section>
         );
     }
 }

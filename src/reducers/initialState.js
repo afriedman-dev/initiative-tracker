@@ -1,5 +1,10 @@
 export default {
     characters: [],
-    charList: [],
-    ajaxCallsInProgress: 0
+    ajaxCallsInProgress: 0,
+    initiative: {
+        initiativeList: [],
+        initiativeListIndex: 0,
+        turn: 0,
+        progress: 0
+    }
 }
