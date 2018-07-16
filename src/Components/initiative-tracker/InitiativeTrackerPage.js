@@ -11,26 +11,44 @@ class InitiativeTrackerPage extends Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state ={}; 
+        this.state = {};
+    }
+
+    initiativeListIsValid = () => {
+        return this.props.initiativeList.length > 0;
     }
 
     updateInitiativeList = (dir) => {
-        if(dir === 'forward'){
-            //this.props.actions.incrementInitiativeList();
-            this.props.actions.addCharacter(this.props.characters[0]);
+        if (this.initiativeListIsValid()) {
+            if (dir === 'forward') {
+                let increment = this.resetIndex(this.props.initiativeList.length - 1, this.props.initiativeListIndex);
+                this.props.actions.incrementInitiativeList(increment);
+            }
+            else {
+                this.props.actions.decrementInitiativeList(this.checkNewIndex());
+            }
+            this.props.actions.calculateProgress();
         }
-        else{
-            this.props.actions.decrementInitiativeList()
-            .then(() => this.refreshInitiativeList())
-            .catch(error => {
-                return error;
-            });
-        }
-        this.refreshInitiativeList();
     };
 
-    refreshInitiativeList(){
-        console.log("refreshed");
+    checkNewIndex = () => {
+        let newIndex = this.props.initiativeListIndex - 1;
+
+        if (newIndex === -1) {
+            newIndex = this.props.initiativeList.length - 1;
+            this.props.actions.updateTurnCount(-1);
+        }
+
+        return newIndex;
+    }
+
+    resetIndex = (len, curInd) => {
+        if (curInd === len) {
+            this.props.actions.resetIndex();
+            this.props.actions.updateTurnCount(1);
+            return 0;
+        }
+        return 1;
     }
 
     render() {
@@ -66,7 +84,7 @@ function mapStateToProps(state, ownProps) {
     return {
         characters: state.characters,
         initiativeList: state.initiative.initiativeList,
-        index: state.initiative.initiativeListIndex,
+        initiativeListIndex: state.initiative.initiativeListIndex,
         progress: state.initiative.progress,
         turn: state.initiative.turn
     };

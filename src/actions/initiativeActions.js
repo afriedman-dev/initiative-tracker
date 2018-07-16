@@ -8,10 +8,22 @@ export function removeCharacter(char){
     return {type:actions.REMOVE_CHARACTER, char};
 }
 
-export function incrementInitiativeList(){
-    return {type:actions.INCREMENT_INITIATIVE_LIST};
+export function incrementInitiativeList(increment){
+    return {type:actions.INCREMENT_INITIATIVE_LIST, increment:increment};
 }
 
-export function decrementInitiativeList(){
-    return {type:actions.DECREMENT_INITIATIVE_LIST};
+export function decrementInitiativeList(newIndex){
+    return {type:actions.DECREMENT_INITIATIVE_LIST, newIndex:newIndex};
+}
+
+export function calculateProgress(){
+    return {type:actions.CALCULATE_PROGRESS};
+}
+
+export function resetIndex(){
+    return {type:actions.RESET_INDEX};
+}
+
+export function updateTurnCount(increment){
+    return {type:actions.UPDATE_TURN_COUNT, increment:increment};
 }
