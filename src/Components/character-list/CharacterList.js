@@ -1,32 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {Link} from 'react-router-dom';
-import * as characterActions from '../../actions/characterActions';
+import * as initiativeActions from '../../actions/initiativeActions';
 import Loader from '../common/Loader';
 
 class CharacterList extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+    
+    addCharacter = (char) => {
+        this.props.actions.addCharacter(char);
     }
 
-    charRow(char, i) {
-        let onCharClick = (e) => {
-            //let char = this.props.characters[e.key];
-            console.log(e);
-            //this.props.actions.saveCharacter(char);
-        };
-
-        return (
-            <Link key={i} to={'/character/' + char.id} id="char-list-row" className="card col-12" onClick={onCharClick}>
-                <div className="card-header row no-gutters">
-                    <div className="col-3 py-0 pr-auto mr-auto">
-                        <img src={char.charImg} alt="Character sidelist" />
+    mapCharRow = function(addChar) {
+        return function(char, i){
+            const add = () => {
+                addChar(char);
+            }
+           return (
+                <div key={i} id="char-list-row" className="card col-12" onClick={add}>
+                    <div className="card-header row no-gutters">
+                        <div className="col-3 py-0 pr-auto mr-auto">
+                            <img src={char.charImg} alt="Character sidelist" />
+                        </div>
+                        <div className="col-9 text-left char-list-name pl-3"><h5>{char.name}</h5></div>
                     </div>
-                    <div className="col-9 text-left char-list-name pl-3"><h5>{char.name}</h5></div>
                 </div>
-            </Link>
-        )
+            )
+        };
     }
 
     render() {
@@ -36,7 +35,7 @@ class CharacterList extends React.Component {
             <div className="row no-gutters">
                 {this.props.loading ?
                     <Loader /> :
-                    characters.map(this.charRow)}
+                    characters.map(this.mapCharRow(this.addCharacter))}
             </div>
         )
     }
@@ -50,7 +49,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(characterActions, dispatch)
+        actions: bindActionCreators(initiativeActions, dispatch)
     };
 }
 

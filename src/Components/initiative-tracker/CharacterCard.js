@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 //basic character card
 const CharacterCard = (props) => {
@@ -6,7 +7,7 @@ const CharacterCard = (props) => {
     let classList = "col ml-auto";
     let cardClass = "charCard card";
 
-    if(props.index === 0){
+    if (props.index === 0) {
         cardClass += " current-card";
     }
 
@@ -14,7 +15,7 @@ const CharacterCard = (props) => {
         <div className={classList}>
             <div className={cardClass}>
                 <img className="charImg card-img-top" src={props.charImg} alt="Character Card" />
-                <div className="card-body">                
+                <div className="card-body">
                     <h5 className="card-title">{props.name}</h5>
                 </div>
                 <ul className="list-group list-group-flush">
@@ -22,7 +23,11 @@ const CharacterCard = (props) => {
                     <li className="list-group-item"><strong>HP:</strong> {props.health}</li>
                     <li className="list-group-item"><strong>ATTACK:</strong> {props.attack}</li>
                 </ul>
-                <button className="card-link btn btn-secondary"><i className="fa fa-pencil-alt" aria-hidden="true"></i> Edit</button>
+                <Link to={'/character/' + props.id}>
+                    <button className="card-link btn btn-secondary" style={{width: `100%`}}>
+                        <i className="fa fa-pencil-alt" aria-hidden="true"></i> Edit
+                    </button>
+                </Link>
             </div>
         </div>
     );
