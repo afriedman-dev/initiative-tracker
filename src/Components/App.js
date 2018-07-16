@@ -147,20 +147,6 @@ class App extends Component {
 
   calcProgress = () => {
     let perc = ((this.state.charListIndex) / this.state.characters.length) * 100;
-
-    if (perc > 50) {
-      perc = 100;
-    }
-    else if (perc > 25) {
-      perc = 75;
-    }
-    else if (perc > 0) {
-      perc = 50;
-    }
-    else {
-      perc = 25;
-    }
-
     this.setState(prevState => ({
       progress: perc
     }))

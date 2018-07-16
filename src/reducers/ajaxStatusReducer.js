@@ -9,7 +9,7 @@ export default function characterReducer(state = initialState.ajaxCallsInProgres
     if (action.type == actions.BEGIN_AJAX_CALL){
         return state + 1;
     }
-    else if (actionTypeEndsInSuccess(action.type)){
+    else if (action.type == actions.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)){
         return state - 1;
     }
 

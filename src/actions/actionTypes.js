@@ -13,3 +13,4 @@ export const DECREMENT_CHAR_LIST = 'DECREMENT_CHAR_LIST';
 
 //Ajax Actions
 export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
+export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
