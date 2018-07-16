@@ -1,11 +1,15 @@
 .App {
-  padding: 0;
-  margin: 0;
+  height: 100%;
 }
 
 .charCard{
   padding:0;
   padding-top: 10px;
+}
+
+.charCard:hover {
+  z-index: 200;
+  box-shadow: 3px 3px 5px 3px rgba(89,86,89,.5);
 }
 
 .charCard button{
@@ -26,6 +30,44 @@
   color:#343a40;
 }
 
+.fa-arrow-circle-right:hover, .fa-arrow-circle-left:hover{
+  box-shadow: 3px 3px 5px 3px rgba(89,86,89,.5);
+}
+
+.initList .jumbotron{
+  width: 100%;
+}
+
 .current-card{
   border: 2px dashed #6c757d;
+}
+
+.char-list-container{
+  height: 100%;
+  background-color:#e9ecef;
+  padding: 0;
+}
+
+.char-list-container img{
+  width:50px;
+}
+
+#char-list-row, #char-list-row:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color:grey;
+}
+
+#char-list-row:hover{
+  z-index: 200;
+  box-shadow: 1px 1px 2px 2px rgba(89,86,89,.5);
+}
+
+.char-list-name {
+  display: flex;
+  align-items: center;
+}
+
+#root{
+  height: 100%;
 }
