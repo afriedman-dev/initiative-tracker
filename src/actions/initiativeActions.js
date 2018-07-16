@@ -8,10 +8,10 @@ export function removeCharacter(char){
     return {type:actions.REMOVE_CHARACTER, char};
 }
 
-export function incrementCharList(char){
-    return {type:actions.INCREMENT_CHAR_LIST, char};
+export function incrementInitiativeList(){
+    return {type:actions.INCREMENT_INITIATIVE_LIST};
 }
 
-export function decrementCharList(char){
-    return {type:actions.DECREMENT_CHAR_LIST, char};
+export function decrementInitiativeList(){
+    return {type:actions.DECREMENT_INITIATIVE_LIST};
 }

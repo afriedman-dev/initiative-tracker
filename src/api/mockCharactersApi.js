@@ -52,7 +52,7 @@ const characters= [
             }
     
             if (char.id) {
-              const existingCharIndex = characters.findIndex(a => a.id == char.id);
+              const existingCharIndex = characters.findIndex(a => a.id === char.id);
               characters.splice(existingCharIndex, 1, char);
             } else {
               //Just simulating creation here.
@@ -71,7 +71,7 @@ const characters= [
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             const indexOfCharToDelete = characters.findIndex(char => {
-                char.id === charId;
+               return char.id === charId;
             });
             characters.splice(indexOfCharToDelete, 1);
             resolve();

@@ -26,13 +26,7 @@ class App extends Component {
 
               <Route exact path="/"
                 render={() =>
-                  <InitiativeTrackerPage
-                    turn={this.state.turn}
-                    progress={this.state.progress}
-                    charList={this.state.charList}
-                    updateCharList={this.updateCharList} 
-                    loading={this.props.loading}
-                    />} />
+                  <InitiativeTrackerPage loading={this.props.loading} />} />
 
               <Route exact path="/character" render={() =>
                 <CharacterFormPage />} />

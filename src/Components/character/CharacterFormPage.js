@@ -20,7 +20,7 @@ class CharacterFormPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.char.id != nextProps.char.id) {
+        if (this.props.char.id !== nextProps.char.id) {
             //populate form when existing char is loaded directly
             this.setState({ char: Object.assign({}, nextProps.char) });
         }
