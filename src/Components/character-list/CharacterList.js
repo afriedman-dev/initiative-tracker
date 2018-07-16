@@ -8,6 +8,9 @@ class CharacterList extends React.Component {
     
     addCharacter = (char) => {
         this.props.actions.addCharacter(char);
+        this.props.actions.resetIndex();
+        this.props.actions.sortInitiativeList();
+        this.props.actions.calculateProgress();
     }
 
     mapCharRow = function(addChar) {

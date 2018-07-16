@@ -6,6 +6,13 @@ export default function initiativeReducer(state = initialState.initiative, actio
         case actions.ADD_CHARACTER:
             return Object.assign({}, state,
                 { initiativeList: [...state.initiativeList, action.char] });
+        case actions.SORT_INITIATIVE_LIST:
+            return Object.assign({}, state,
+                {
+                    initiativeList: state.initiativeList.sort(function (a, b) {
+                        return a.order - b.order
+                    })
+                });
         case actions.INCREMENT_INITIATIVE_LIST:
             let incList = state.initiativeList;
             let shiftedChar = incList.shift();
@@ -43,27 +50,6 @@ export default function initiativeReducer(state = initialState.initiative, actio
             return state;
     }
 }
-
-//   addNewChar = (charInput) => {
-//     this.setState(prevState => ({
-//       characters: prevState.characters.concat(charInput)
-//     }))
-
-//     this.refreshCharList();
-//   }
-
-//   refreshCharList = () => {
-//     this.setState(prevState => ({
-//       charList: this.sortCharList(prevState.characters),
-//       charListIndex: 0
-//     }), this.calcProgress())
-//   }
-
-//   sortCharList = (charList) => {
-//     return charList.sort(function (a, b) {
-//       return a.order - b.order
-//     });
-//   }
 
 //   removeChar = (index) => {
 //     this.setState(prevState => ({
