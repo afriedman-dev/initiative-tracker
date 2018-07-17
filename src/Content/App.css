@@ -5,6 +5,7 @@
 .charCard{
   padding:0;
   padding-top: 10px;
+  box-shadow: 2px 2px 3px 2px rgba(89,86,89,.3);
 }
 
 .charCard:hover {
@@ -14,6 +15,10 @@
 
 .charCard button{
   border-radius: 0;
+}
+
+.char-card-container{
+  max-width: 50%;
 }
 
 .charImg{

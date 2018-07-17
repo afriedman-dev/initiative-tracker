@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 //basic character card
 const CharacterCard = (props) => {
 
-    let classList = "col ml-auto";
+    let classList = "col char-card-container ml-auto mb-2";
     let cardClass = "charCard card pullUp";
 
     if (props.index === 0) {
