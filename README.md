@@ -7,7 +7,7 @@ TODO:
  - Allow users to pick images from dropdown list
  - Allow users to drag/drop cards from side menu
  - Add expandable character details to bottom of card
- - Enable editing of cards/characters
+ - Enable editing of cards/characters with https://github.com/kaivi/riek
  - Reformat character cards to host more relevant info
 
 ## React README
