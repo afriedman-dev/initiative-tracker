@@ -2,70 +2,73 @@
   height: 100%;
 }
 
-.charCard{
-  padding:0;
+.charCard {
+  padding: 0;
   padding-top: 10px;
-  box-shadow: 2px 2px 3px 2px rgba(89,86,89,.3);
+  box-shadow: 2px 2px 3px 2px rgba(89, 86, 89, 0.3);
 }
 
 .charCard:hover {
   z-index: 200;
-  box-shadow: 3px 3px 5px 3px rgba(89,86,89,.5);
+  box-shadow: 3px 3px 5px 3px rgba(89, 86, 89, 0.5);
 }
 
-.charCard button{
+.charCard button {
   border-radius: 0;
 }
 
-.char-card-container{
+.char-card-container {
   max-width: 50%;
 }
 
-.charImg{
-  margin:auto;
-  width:100px;
-  display:block;
+.charImg {
+  margin: auto;
+  width: 100px;
+  display: block;
 }
 
 .initList {
-  margin:2.5rem;
+  margin: 2.5rem;
 }
 
-.fa-arrow-circle-right, .fa-arrow-circle-left{
-  color:#343a40;
+.fa-arrow-circle-right,
+.fa-arrow-circle-left {
+  color: #343a40;
 }
 
-.fa-arrow-circle-right:hover, .fa-arrow-circle-left:hover{
-  box-shadow: 3px 3px 5px 3px rgba(89,86,89,.5);
+.fa-arrow-circle-right:hover,
+.fa-arrow-circle-left:hover {
+  box-shadow: 3px 3px 5px 3px rgba(89, 86, 89, 0.5);
 }
 
-.initList .jumbotron{
+.initList .jumbotron {
   width: 100%;
 }
 
-.current-card{
+.current-card {
   border: 2px dashed #6c757d;
 }
 
-.char-list-container{
+.char-list-container {
   height: 100%;
-  background-color:#e9ecef;
+  background-color: #e9ecef;
   padding: 0;
 }
 
-.char-list-container img{
-  width:50px;
+.char-list-container img {
+  width: 50px;
 }
 
-#char-list-row, #char-list-row:hover {
+#char-list-row,
+#char-list-row:hover {
   cursor: pointer;
   text-decoration: none;
-  color:grey;
+  color: grey;
 }
 
-#char-list-row:hover{
+#char-list-row:hover {
   z-index: 200;
-  box-shadow: 1px 1px 2px 2px rgba(89,86,89,.5);
+  box-shadow: 1px 1px 2px 2px rgba(89, 86, 89, 0.5);
 }
 
 .char-list-name {
@@ -73,6 +76,6 @@
   align-items: center;
 }
 
-#root{
+#root {
   height: 100%;
 }
