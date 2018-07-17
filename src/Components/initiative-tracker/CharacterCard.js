@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom';
 const CharacterCard = (props) => {
 
     let classList = "col ml-auto";
-    let cardClass = "charCard card";
+    let cardClass = "charCard card pullUp";
 
     if (props.index === 0) {
-        cardClass += " current-card";
+        cardClass += " current-card floating";
     }
 
     return (
