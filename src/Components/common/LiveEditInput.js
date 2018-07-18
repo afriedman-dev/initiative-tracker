@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const LiveEditInput = ({ name, label, onChange, value, error }) => {
   let wrapperClass = "form-group row";
@@ -23,6 +24,14 @@ const LiveEditInput = ({ name, label, onChange, value, error }) => {
       </div>
     </div>
   );
+};
+
+LiveEditInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  error: PropTypes.object.isRequired
 };
 
 export default LiveEditInput;
