@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 // In production, we register a service worker to serve assets from local cache.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -77,7 +79,7 @@ function registerValidSW(swUrl) {
       };
     })
     .catch(error => {
-      console.error("Error during service worker registration:", error);
+      console.error(chalk.red("Error during service worker registration:"), error);
     });
 }
 
@@ -103,7 +105,7 @@ function checkValidServiceWorker(swUrl) {
     })
     .catch(() => {
       console.log(
-        "No internet connection found. App is running in offline mode."
+        `${chalk.red('No internet connection found.')} App is running in offline mode.`
       );
     });
 }

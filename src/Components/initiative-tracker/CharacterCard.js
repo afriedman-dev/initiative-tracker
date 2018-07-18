@@ -13,6 +13,7 @@ const CharacterCard = props => {
   return (
     <div className={classList}>
       <div className={cardClass}>
+        <button className="btn close-btn" />
         <img
           className="charImg card-img-top"
           src={props.charImg}
