@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import "../Content/App.css";
@@ -23,9 +23,7 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                render={() => (
-                  <InitiativeTrackerPage loading={loading} />
-                )}
+                render={() => <InitiativeTrackerPage loading={loading} />}
               />
 
               <Route
@@ -72,7 +70,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    loading: state.ajaxCallsInProgress > 0,
+    loading: state.ajaxCallsInProgress > 0
   };
 }
 

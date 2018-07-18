@@ -94,5 +94,11 @@
 }
 
 .close-btn:after {
-  content: '✖'; /* UTF-8 symbol */
+  content: "✖"; /* UTF-8 symbol */
+}
+
+.remove-button-styles,
+.remove-button-styles:active {
+  background: transparent;
+  border: none;
 }

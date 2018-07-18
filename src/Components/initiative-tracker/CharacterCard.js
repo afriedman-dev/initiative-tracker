@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 //basic character card
-const CharacterCard = ({index, charImg, name, armor, health, attack, id}) => {
+const CharacterCard = ({ index, charImg, name, armor, health, attack, id }) => {
   let classList = "col char-card-container  ml-auto mb-2";
   let cardClass = "charCard card pullUp";
 
@@ -49,12 +49,12 @@ const CharacterCard = ({index, charImg, name, armor, health, attack, id}) => {
 };
 
 CharacterCard.propTypes = {
-  index: PropTypes.number.isRequired, 
-  charImg: PropTypes.string.isRequired, 
-  name: PropTypes.string.isRequired, 
-  armor: PropTypes.string.isRequired, 
-  health: PropTypes.number.isRequired, 
-  attack: PropTypes.string.isRequired, 
+  index: PropTypes.number.isRequired,
+  charImg: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  armor: PropTypes.number.isRequired,
+  health: PropTypes.number.isRequired,
+  attack: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired
 };
 

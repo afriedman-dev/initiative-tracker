@@ -15,15 +15,16 @@ class InitiativeList extends React.Component {
 
     return (
       <div className="initList col row align-items-center">
-        <div
-          className="col-1"
+        <button
+          className="col-1 remove-button-styles"
           onClick={() => updateInitiativeList("back")}
+          type="button"
         >
           <i
             className="fa fa-arrow-circle-left fa-2x col btn"
             aria-hidden="true"
           />
-        </div>
+        </button>
         <div className="col-10 row">
           {!Array.isArray(characters) || !characters.length ? (
             <div className="jumbotron">
@@ -39,15 +40,16 @@ class InitiativeList extends React.Component {
             ))
           )}
         </div>
-        <div
-          className="col-1"
+        <button
+          type="button"
+          className="col-1 remove-button-styles"
           onClick={() => updateInitiativeList("forward")}
         >
           <i
             className="fa fa-arrow-circle-right fa-2x col btn"
             aria-hidden="true"
           />
-        </div>
+        </button>
       </div>
     );
   }
