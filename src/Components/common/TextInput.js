@@ -29,7 +29,7 @@ TextInput.propTypes = {
    label: PropTypes.string.isRequired,
    onChange: PropTypes.func.isRequired,
    placeholder: PropTypes.string,
-   value: PropTypes.string.isRequired,
+   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
    error: PropTypes.object.isRequired,
 };
 
