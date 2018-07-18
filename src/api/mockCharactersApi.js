@@ -37,7 +37,7 @@ const generateId = char => {
 
 class CharactersApi {
   static getAllCharacters() {
-    return new Promise((resolve, rejct) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Object.assign([], characters));
       }, 1000);

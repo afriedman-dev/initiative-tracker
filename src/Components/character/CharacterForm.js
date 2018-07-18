@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 
 //Form component for adding new characters
@@ -64,6 +65,13 @@ const CharacterForm = ({ char, onSubmit, onFieldChange, errors }) => {
       </form>
     </div>
   );
+};
+
+CharacterForm.propTypes = {
+  char: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 export default CharacterForm;

@@ -32,7 +32,7 @@ export function loadCharacters() {
 }
 
 export function saveCharacter(char) {
-  return function(dispatch, getState) {
+  return function(dispatch) {
     dispatch(beginAjaxCall());
 
     return charactersApi

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import CharacterCard from "./CharacterCard";
 
 //Initiative List mapping all characters passed in
@@ -10,13 +11,13 @@ class InitiativeList extends React.Component {
   }
 
   render() {
-    const { characters } = this.props;
+    const { characters, updateInitiativeList } = this.props;
 
     return (
       <div className="initList col row align-items-center">
         <div
           className="col-1"
-          onClick={() => this.props.updateInitiativeList("back")}
+          onClick={() => updateInitiativeList("back")}
         >
           <i
             className="fa fa-arrow-circle-left fa-2x col btn"
@@ -40,7 +41,7 @@ class InitiativeList extends React.Component {
         </div>
         <div
           className="col-1"
-          onClick={() => this.props.updateInitiativeList("forward")}
+          onClick={() => updateInitiativeList("forward")}
         >
           <i
             className="fa fa-arrow-circle-right fa-2x col btn"
@@ -51,5 +52,10 @@ class InitiativeList extends React.Component {
     );
   }
 }
+
+InitiativeList.propTypes = {
+  characters: PropTypes.array.isRequired,
+  updateInitiativeList: PropTypes.func.isRequired
+};
 
 export default InitiativeList;

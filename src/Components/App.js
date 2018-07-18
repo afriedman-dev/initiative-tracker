@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import "../Content/App.css";
@@ -8,9 +9,11 @@ import InitiativeTrackerPage from "./initiative-tracker/InitiativeTrackerPage";
 
 import CharacterCardInput from "./initiative-tracker/CharacterCardInput";
 
-//App module for handling the app data state and components
+// App module for handling the app data state and components
 class App extends Component {
   render() {
+    const { loading } = this.props;
+
     return (
       <div className="App m-0 p-0">
         <BrowserRouter>
@@ -21,7 +24,7 @@ class App extends Component {
                 exact
                 path="/"
                 render={() => (
-                  <InitiativeTrackerPage loading={this.props.loading} />
+                  <InitiativeTrackerPage loading={loading} />
                 )}
               />
 
@@ -63,9 +66,13 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+App.propTypes = {
+  loading: PropTypes.bool.isRequired
+};
+
+function mapStateToProps(state) {
   return {
-    loading: state.ajaxCallsInProgress > 0
+    loading: state.ajaxCallsInProgress > 0,
   };
 }
 
