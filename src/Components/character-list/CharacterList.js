@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as initiativeActions from "../../actions/initiativeActions";
@@ -33,11 +34,11 @@ class CharacterList extends React.Component {
   };
 
   render() {
-    const { characters } = this.props;
+    const { characters, loading } = this.props;
 
     return (
       <div className="row no-gutters">
-        {this.props.loading ? (
+        {loading ? (
           <Loader />
         ) : (
           characters.map(this.mapCharRow(this.addCharacter))
@@ -47,7 +48,13 @@ class CharacterList extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+CharacterList.propTypes = {
+  characters: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state) {
   return {
     characters: state.characters
   };

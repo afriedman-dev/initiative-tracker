@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 //Form component for adding new characters
@@ -37,6 +38,15 @@ const NewCharacterForm = withRouter(
     };
 
     render() {
+      const {
+        charNameInput,
+        charImgInput,
+        order,
+        armor,
+        health,
+        attack
+      } = this.state;
+
       return (
         <div className="col-6">
           <form onSubmit={this.handleSubmit} className="card">
@@ -48,7 +58,7 @@ const NewCharacterForm = withRouter(
                 <label className="col-form-label col-4">Character Name:</label>
                 <input
                   type="text"
-                  value={this.state.charNameInput}
+                  value={charNameInput}
                   onChange={e =>
                     this.setState({ charNameInput: e.target.value })
                   }
@@ -61,7 +71,7 @@ const NewCharacterForm = withRouter(
                 <label className="col-form-label col-4">Initiative:</label>
                 <input
                   type="text"
-                  value={this.state.order}
+                  value={order}
                   onChange={e => this.setState({ order: e.target.value })}
                   required
                   className="form-control col-8"
@@ -72,7 +82,7 @@ const NewCharacterForm = withRouter(
                 <label className="col-form-label col-4">Armor:</label>
                 <input
                   type="text"
-                  value={this.state.armor}
+                  value={armor}
                   onChange={e => this.setState({ armor: e.target.value })}
                   className="form-control col-8"
                   placeholder="Armor Class"
@@ -82,7 +92,7 @@ const NewCharacterForm = withRouter(
                 <label className="col-form-label col-4">Health:</label>
                 <input
                   type="text"
-                  value={this.state.health}
+                  value={health}
                   onChange={e => this.setState({ health: e.target.value })}
                   className="form-control col-8"
                   placeholder="Current Health"
@@ -92,7 +102,7 @@ const NewCharacterForm = withRouter(
                 <label className="col-form-label col-4">Attack:</label>
                 <input
                   type="text"
-                  value={this.state.attack}
+                  value={attack}
                   onChange={e => this.setState({ attack: e.target.value })}
                   className="form-control col-8"
                   placeholder="Attack Notes: +6 1d10+4"
@@ -105,7 +115,7 @@ const NewCharacterForm = withRouter(
                 <input
                   type="text"
                   name="imgUrl"
-                  value={this.state.charImgInput}
+                  value={charImgInput}
                   onChange={e =>
                     this.setState({ charImgInput: e.target.value })
                   }
@@ -114,7 +124,6 @@ const NewCharacterForm = withRouter(
                 />
               </div>
               <button type="submit" className="btn btn-primary">
-                {" "}
                 Add Character{" "}
               </button>
             </div>
@@ -124,5 +133,10 @@ const NewCharacterForm = withRouter(
     }
   }
 );
+
+NewCharacterForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 export default NewCharacterForm;

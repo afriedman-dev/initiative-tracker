@@ -16,7 +16,7 @@ export default function initiativeReducer(
           return a.order - b.order;
         })
       });
-    case actions.INCREMENT_INITIATIVE_LIST:
+    case actions.INCREMENT_INITIATIVE_LIST: {
       let incList = state.initiativeList;
       let shiftedChar = incList.shift();
 
@@ -26,7 +26,8 @@ export default function initiativeReducer(
         initiativeList: incList,
         initiativeListIndex: state.initiativeListIndex + action.increment
       });
-    case actions.DECREMENT_INITIATIVE_LIST:
+    }
+    case actions.DECREMENT_INITIATIVE_LIST: {
       let decList = state.initiativeList;
       let poppedChar = decList.pop();
 
@@ -36,6 +37,7 @@ export default function initiativeReducer(
         initiativeList: decList,
         initiativeListIndex: action.newIndex
       });
+    }
     case actions.CALCULATE_PROGRESS:
       return state.initiativeList.length > 0
         ? Object.assign({}, state, {

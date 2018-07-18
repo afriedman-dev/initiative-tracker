@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import NewCharacterForm from "./NewCharacterForm";
 
-/* eslint-disable */
+/* eslint-disable no-undef */
 it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(<NewCharacterForm />, div);
@@ -14,4 +14,4 @@ describe("Testing", () => {
     expect(true).toEqual(true);
   });
 });
-/* eslint-enable */
+/* eslint-enable no-undef */

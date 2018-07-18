@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -33,19 +34,6 @@ class CharacterFormPage extends React.Component {
     return this.setState({ char: char });
   }
 
-  formIsValid() {
-    let formIsValid = true;
-    let errors = {};
-
-    if (this.state.char.name.length < 2) {
-      errors.name = "Name must be at least 2 characters.";
-      formIsValid = false;
-    }
-
-    this.setState({ errors: errors });
-    return formIsValid;
-  }
-
   checkCharImg = () => {
     let char = this.state.char;
 
@@ -75,15 +63,29 @@ class CharacterFormPage extends React.Component {
       });
   };
 
+  formIsValid() {
+    let formIsValid = true;
+    let errors = {};
+
+    if (this.state.char.name.length < 2) {
+      errors.name = "Name must be at least 2 characters.";
+      formIsValid = false;
+    }
+
+    this.setState({ errors: errors });
+    return formIsValid;
+  }
+
   redirect() {
     this.setState({ saving: false });
     this.props.history.push("/");
   }
 
   render() {
+    const { saving, char, errors } = this.state;
     return (
       <section className="col offset-3" style={{ marginTop: "2.5rem" }}>
-        {this.state.saving ? (
+        {saving ? (
           <div className="jumbotron col-6">
             <h1 className="display-4">
               Saving{" "}
@@ -95,16 +97,22 @@ class CharacterFormPage extends React.Component {
           </div>
         ) : (
           <CharacterForm
-            char={this.state.char}
+            char={char}
             onSubmit={this.handleSubmit}
             onFieldChange={this.onFieldChange}
-            errors={this.state.errors}
+            errors={errors}
           />
         )}
       </section>
     );
   }
 }
+
+CharacterFormPage.propTypes = {
+  char: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
+};
 
 function getCharacterById(characters, id) {
   const char = characters.filter(char => char.id == id);

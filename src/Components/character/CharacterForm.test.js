@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import CharacterForm from "./CharacterForm";
 
-/* eslint-disable */
+/* eslint-disable no-undef */
 it("renders without crashing", () => {
   const div = document.createElement("div");
   let props = {
@@ -48,4 +48,4 @@ describe("Testing CharacterForm.js", () => {
   });
 });
 
-/* eslint-enable */
+/* eslint-enable no-undef */

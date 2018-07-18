@@ -7,8 +7,9 @@
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types":[false],
+    "react/forbid-prop-types": [false],
     "react/jsx-one-expression-per-line": [false]
   },
-  "env":{"browser": true}
+  "env": { "browser": true },
+  "parser": "babel-eslint"
 }

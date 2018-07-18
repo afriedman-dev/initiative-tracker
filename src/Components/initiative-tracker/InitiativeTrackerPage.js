@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -54,10 +55,11 @@ class InitiativeTrackerPage extends Component {
   };
 
   render() {
+    const {loading, turn, progress, initiativeList} = this.props;
     return (
       <div className="row containing-row">
         <section className="col-2 char-list-container no-gutters">
-          <CharacterList loading={this.props.loading} />
+          <CharacterList loading={loading} />
         </section>
         <section className="col-10">
           <section className="row">
@@ -66,14 +68,14 @@ class InitiativeTrackerPage extends Component {
               style={{ marginTop: "2rem" }}
             >
               <TurnCounter
-                turn={this.props.turn}
-                progress={this.props.progress}
+                turn={turn}
+                progress={progress}
               />
             </div>
           </section>
           <section className="row">
             <InitiativeList
-              characters={this.props.initiativeList}
+              characters={initiativeList}
               updateInitiativeList={this.updateInitiativeList}
             />
           </section>
@@ -90,7 +92,17 @@ class InitiativeTrackerPage extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+InitiativeTrackerPage.propTypes = {
+  characters: PropTypes.array.isRequired,
+  initiativeList: PropTypes.array.isRequired,
+  initiativeListIndex: PropTypes.number.isRequired,
+  progress: PropTypes.number.isRequired,
+  turn: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state) {
   return {
     characters: state.characters,
     initiativeList: state.initiative.initiativeList,
