@@ -1,15 +1,18 @@
 {
-  "extends": [
-    "airbnb",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": [false],
-    "react/jsx-one-expression-per-line": [false]
-  },
-  "env": { "browser": true },
-  "parser": "babel-eslint"
+    "extends": [
+        "airbnb",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/forbid-prop-types": [false],
+        "react/jsx-one-expression-per-line": [false],
+        "react/jsx-indent-props": [false],
+        "react/jsx-indent": [false],
+        "react/jsx-closing-bracket-location": [false]
+    },
+    "env": { "browser": true },
+    "parser": "babel-eslint"
 }

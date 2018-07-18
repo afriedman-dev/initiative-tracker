@@ -1,12 +1,12 @@
-import { combineReducers } from "redux";
-import characters from "./characterReducer";
-import initiative from "./initiativeReducer";
-import ajaxCallsInProgress from "./ajaxStatusReducer";
+import { combineReducers } from 'redux';
+import characters from './characterReducer';
+import initiative from './initiativeReducer';
+import ajaxCallsInProgress from './ajaxStatusReducer';
 
 const rootReducer = combineReducers({
-  characters,
-  initiative,
-  ajaxCallsInProgress
+   characters,
+   initiative,
+   ajaxCallsInProgress,
 });
 
 export default rootReducer;
