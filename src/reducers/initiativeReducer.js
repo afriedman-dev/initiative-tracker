@@ -6,10 +6,14 @@ export default function initiativeReducer(
    action
 ) {
    switch (action.type) {
-      case actions.ADD_CHARACTER:
+      case actions.ADD_CHARACTER: {
+         let newChar = { ...action.char };
+         newChar.id = newChar.id + '_' + Math.trunc(Math.random() * 1000);
+
          return Object.assign({}, state, {
-            initiativeList: [...state.initiativeList, action.char],
+            initiativeList: [...state.initiativeList, newChar],
          });
+      }
       case actions.SORT_INITIATIVE_LIST:
          return Object.assign({}, state, {
             initiativeList: state.initiativeList.sort(function(a, b) {

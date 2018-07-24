@@ -5,7 +5,7 @@ import LiveEditInput from '../common/LiveEditInput';
 //basic character card
 const CharacterCardInput = ({
    index,
-   initiative,
+   order,
    onFieldChange,
    charImg,
    name,
@@ -15,10 +15,10 @@ const CharacterCardInput = ({
    id,
    errors,
 }) => {
-   let cardClass = 'charCard card';
+   let cardClass = 'charCard card pullUp';
 
    if (index === 0) {
-      cardClass += ' current-card';
+      cardClass += ' current-card floating';
    }
 
    return (
@@ -31,7 +31,8 @@ const CharacterCardInput = ({
             />
             <div className="card-body">
                <h5 className="card-title">
-                  <input value={name} />
+                  {name}
+                  {id > 0 ? id : ''}
                </h5>
             </div>
             <ul className="list-group list-group-flush">
@@ -39,9 +40,9 @@ const CharacterCardInput = ({
                   <LiveEditInput
                      name="order"
                      label="Initiative:"
-                     value={initiative}
+                     value={order}
                      onChange={onFieldChange}
-                     error={errors.initiative}
+                     error={errors.order}
                   />
                </li>
                <li className="list-group-item">
@@ -79,15 +80,19 @@ const CharacterCardInput = ({
 
 CharacterCardInput.propTypes = {
    index: PropTypes.number.isRequired,
-   initiative: PropTypes.number.isRequired,
+   order: PropTypes.number.isRequired,
    onFieldChange: PropTypes.func.isRequired,
    charImg: PropTypes.string.isRequired,
    name: PropTypes.string.isRequired,
    armor: PropTypes.string.isRequired,
    health: PropTypes.number.isRequired,
    attack: PropTypes.string.isRequired,
-   id: PropTypes.number.isRequired,
-   errors: PropTypes.object.isRequired,
+   id: PropTypes.string.isRequired,
+   errors: PropTypes.object,
+};
+
+CharacterCardInput.defaultProps = {
+   errors: {},
 };
 
 export default CharacterCardInput;

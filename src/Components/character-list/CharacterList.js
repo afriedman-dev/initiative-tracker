@@ -7,21 +7,22 @@ import Loader from '../common/Loader';
 
 class CharacterList extends React.Component {
    addCharacter = char => {
-      this.props.actions.addCharacter(char);
-      this.props.actions.resetIndex();
-      this.props.actions.sortInitiativeList();
-      this.props.actions.calculateProgress();
+      const { actions } = this.props;
+      actions.addCharacter(char);
+      actions.resetIndex();
+      actions.sortInitiativeList();
+      actions.calculateProgress();
    };
 
    mapCharRow = function(addChar) {
-      return function(char, i) {
+      return function(char) {
          const add = () => {
             addChar(char);
          };
          return (
             <button
                type="button"
-               key={i}
+               key={char.id}
                id="char-list-row"
                className="card col-12 remove-button-styles"
                onClick={add}>
@@ -30,7 +31,7 @@ class CharacterList extends React.Component {
                      <img src={char.charImg} alt="Character sidelist" />
                   </div>
                   <div className="col-9 text-left char-list-name pl-3">
-                     <h5>{char.name}</h5>
+                     <h5>{char.name + ' ' + char.id}</h5>
                   </div>
                </div>
             </button>

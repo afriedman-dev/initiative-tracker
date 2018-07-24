@@ -32,7 +32,7 @@ const characters = [
 ];
 
 const generateId = char => {
-   return char.name.toLowerCase() + '-' + Math.random() * 10000000000000000;
+   return char.name.toLowerCase() + '-' + Math.trunc(Math.random() * 10000000);
 };
 
 class CharactersApi {

@@ -21,7 +21,7 @@ const CharacterCard = ({ index, charImg, name, armor, health, attack, id }) => {
                alt="Character Card"
             />
             <div className="card-body">
-               <h5 className="card-title">{name}</h5>
+               <h5 className="card-title">{name + ' ' + id}</h5>
             </div>
             <ul className="list-group list-group-flush">
                <li className="list-group-item">
@@ -54,7 +54,7 @@ CharacterCard.propTypes = {
    armor: PropTypes.number.isRequired,
    health: PropTypes.number.isRequired,
    attack: PropTypes.string.isRequired,
-   id: PropTypes.number.isRequired,
+   id: PropTypes.string.isRequired,
 };
 
 export default CharacterCard;
