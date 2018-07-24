@@ -9,9 +9,42 @@ import TurnCounter from './TurnCounter';
 import CharacterList from '../character-list/CharacterList';
 
 class InitiativeTrackerPage extends Component {
-   initiativeListIsValid = () => {
-      const { initiativeList } = this.props;
-      return initiativeList.length > 0;
+   onCharacterUpdate = (char, index) => {
+      const { actions } = this.props;
+      actions.updateCharacter(char, index);
+      actions.resetIndex();
+      actions.sortInitiativeList();
+      actions.calculateProgress();
+   };
+
+   removeCharacter = index => {
+      const { actions } = this.props;
+      actions.removeCharacter(index);
+      actions.resetIndex();
+      actions.sortInitiativeList();
+      actions.calculateProgress();
+   };
+
+   resetIndex = (len, curInd) => {
+      const { actions } = this.props;
+      if (curInd === len) {
+         actions.resetIndex();
+         actions.updateTurnCount(1);
+         return 0;
+      }
+      return 1;
+   };
+
+   checkNewIndex = () => {
+      const { initiativeList, initiativeListIndex, actions } = this.props;
+      let newIndex = initiativeListIndex - 1;
+
+      if (newIndex === -1) {
+         newIndex = initiativeList.length - 1;
+         actions.updateTurnCount(-1);
+      }
+
+      return newIndex;
    };
 
    updateInitiativeList = dir => {
@@ -30,34 +63,9 @@ class InitiativeTrackerPage extends Component {
       }
    };
 
-   checkNewIndex = () => {
-      const { initiativeList, initiativeListIndex, actions } = this.props;
-      let newIndex = initiativeListIndex - 1;
-
-      if (newIndex === -1) {
-         newIndex = initiativeList.length - 1;
-         actions.updateTurnCount(-1);
-      }
-
-      return newIndex;
-   };
-
-   resetIndex = (len, curInd) => {
-      const { actions } = this.props;
-      if (curInd === len) {
-         actions.resetIndex();
-         actions.updateTurnCount(1);
-         return 0;
-      }
-      return 1;
-   };
-
-   removeCharacter = index => {
-      const { actions } = this.props;
-      actions.removeCharacter(index);
-      actions.resetIndex();
-      actions.sortInitiativeList();
-      actions.calculateProgress();
+   initiativeListIsValid = () => {
+      const { initiativeList } = this.props;
+      return initiativeList.length > 0;
    };
 
    render() {
@@ -80,6 +88,7 @@ class InitiativeTrackerPage extends Component {
                      characters={initiativeList}
                      updateInitiativeList={this.updateInitiativeList}
                      removeCharacter={this.removeCharacter}
+                     onCharacterUpdate={this.onCharacterUpdate}
                   />
                </section>
                <section className="row">

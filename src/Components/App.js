@@ -11,6 +11,12 @@ import CharacterCardInput from './initiative-tracker/CharacterCardInput';
 
 // App module for handling the app data state and components
 class App extends Component {
+   constructor(props, context) {
+      super(props, context);
+
+      this.state = {};
+   }
+
    render() {
       const { loading } = this.props;
 

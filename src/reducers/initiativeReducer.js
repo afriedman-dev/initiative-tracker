@@ -22,6 +22,14 @@ export default function initiativeReducer(
             initiativeList: newList,
          });
       }
+      case actions.UPDATE_CHARACTER: {
+         let newList = [...state.initiativeList];
+         newList[action.index] = action.char;
+
+         return Object.assign({}, state, {
+            initiativeList: newList,
+         });
+      }
       case actions.SORT_INITIATIVE_LIST:
          return Object.assign({}, state, {
             initiativeList: state.initiativeList.sort(function(a, b) {

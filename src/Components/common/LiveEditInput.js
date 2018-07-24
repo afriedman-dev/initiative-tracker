@@ -30,8 +30,12 @@ LiveEditInput.propTypes = {
    name: PropTypes.string.isRequired,
    label: PropTypes.string.isRequired,
    onChange: PropTypes.func.isRequired,
-   value: PropTypes.string.isRequired,
-   error: PropTypes.object.isRequired,
+   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+   error: PropTypes.string,
+};
+
+LiveEditInput.defaultProps = {
+   error: null,
 };
 
 export default LiveEditInput;

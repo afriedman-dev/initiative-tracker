@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CharacterCard from './CharacterCard';
-//import CharacterCardInput from './CharacterCardInput';
+import CharacterCardInput from './CharacterCardInput';
 
 //Initiative List mapping all characters passed in
 class InitiativeList extends React.Component {
@@ -12,7 +12,17 @@ class InitiativeList extends React.Component {
    }
 
    render() {
-      const { characters, updateInitiativeList, removeCharacter } = this.props;
+      const {
+         characters,
+         updateInitiativeList,
+         removeCharacter,
+         onCharacterUpdate,
+      } = this.props;
+
+      const flipCard = id => {
+         var targetCard = document.getElementById('flip-card-for_' + id);
+         targetCard.classList.toggle('is-flipped');
+      };
 
       return (
          <div className="initList col row align-items-center">
@@ -36,12 +46,31 @@ class InitiativeList extends React.Component {
                   </div>
                ) : (
                   characters.map((char, i) => (
-                     <CharacterCard
-                        key={char.id}
-                        {...char}
-                        index={i}
-                        removeCharacter={removeCharacter}
-                     />
+                     <div
+                        className="flip-container char-card-container col ml-auto mb-2"
+                        key={char.id}>
+                        <div
+                           className="flip-card"
+                           id={'flip-card-for_' + char.id}>
+                           <div className="flip-front">
+                              <CharacterCard
+                                 {...char}
+                                 index={i}
+                                 removeCharacter={removeCharacter}
+                                 flipCard={flipCard}
+                              />
+                           </div>
+                           <div className="flip-back">
+                              <CharacterCardInput
+                                 char={char}
+                                 index={i}
+                                 removeCharacter={removeCharacter}
+                                 onCharacterUpdate={onCharacterUpdate}
+                                 flipCard={flipCard}
+                              />
+                           </div>
+                        </div>
+                     </div>
                   ))
                )}
             </div>
@@ -63,6 +92,7 @@ InitiativeList.propTypes = {
    characters: PropTypes.array.isRequired,
    updateInitiativeList: PropTypes.func.isRequired,
    removeCharacter: PropTypes.func.isRequired,
+   onCharacterUpdate: PropTypes.func.isRequired,
 };
 
 export default InitiativeList;

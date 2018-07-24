@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 //basic character card
 const CharacterCard = ({
@@ -12,8 +11,8 @@ const CharacterCard = ({
    attack,
    id,
    removeCharacter,
+   flipCard,
 }) => {
-   let classList = 'col char-card-container  ml-auto mb-2';
    let cardClass = 'charCard card pullUp';
 
    if (index === 0) {
@@ -24,8 +23,12 @@ const CharacterCard = ({
       removeCharacter(index);
    };
 
+   const flip = () => {
+      flipCard(id);
+   };
+
    return (
-      <div className={classList}>
+      <div>
          <div className={cardClass}>
             <button type="button" className="btn close-btn" onClick={remove} />
             <img
@@ -47,14 +50,13 @@ const CharacterCard = ({
                   <strong>ATTACK:</strong> {attack}
                </li>
             </ul>
-            <Link to={'/character/' + id}>
-               <button
-                  type="button"
-                  className="card-link btn btn-secondary"
-                  style={{ width: `100%` }}>
-                  <i className="fa fa-pencil-alt" aria-hidden="true" /> Edit
-               </button>
-            </Link>
+            <button
+               type="button"
+               className="card-link btn btn-secondary"
+               onClick={flip}
+               style={{ width: `100%` }}>
+               <i className="fa fa-pencil-alt" aria-hidden="true" /> Edit
+            </button>
          </div>
       </div>
    );
@@ -69,6 +71,7 @@ CharacterCard.propTypes = {
    health: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
    attack: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
    removeCharacter: PropTypes.func.isRequired,
+   flipCard: PropTypes.func.isRequired,
 };
 
 CharacterCard.defaultProps = {

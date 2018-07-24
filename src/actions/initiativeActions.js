@@ -8,6 +8,10 @@ export function removeCharacter(index) {
    return { type: actions.REMOVE_CHARACTER, index };
 }
 
+export function updateCharacter(char, index) {
+   return { type: actions.UPDATE_CHARACTER, char, index };
+}
+
 export function sortInitiativeList() {
    return { type: actions.SORT_INITIATIVE_LIST };
 }
