@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 //basic character card
-const CharacterCard = ({ index, charImg, name, armor, health, attack, id }) => {
+const CharacterCard = ({
+   index,
+   charImg,
+   name,
+   armor,
+   health,
+   attack,
+   id,
+   removeCharacter,
+}) => {
    let classList = 'col char-card-container  ml-auto mb-2';
    let cardClass = 'charCard card pullUp';
 
@@ -11,10 +20,14 @@ const CharacterCard = ({ index, charImg, name, armor, health, attack, id }) => {
       cardClass += ' current-card floating';
    }
 
+   const remove = () => {
+      removeCharacter(index);
+   };
+
    return (
       <div className={classList}>
          <div className={cardClass}>
-            <button type="button" className="btn close-btn" />
+            <button type="button" className="btn close-btn" onClick={remove} />
             <img
                className="charImg card-img-top"
                src={charImg}
@@ -49,12 +62,19 @@ const CharacterCard = ({ index, charImg, name, armor, health, attack, id }) => {
 
 CharacterCard.propTypes = {
    index: PropTypes.number.isRequired,
-   charImg: PropTypes.string.isRequired,
-   name: PropTypes.string.isRequired,
-   armor: PropTypes.number.isRequired,
-   health: PropTypes.number.isRequired,
-   attack: PropTypes.string.isRequired,
    id: PropTypes.string.isRequired,
+   charImg: PropTypes.string.isRequired,
+   name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+   armor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+   health: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+   attack: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+   removeCharacter: PropTypes.func.isRequired,
+};
+
+CharacterCard.defaultProps = {
+   armor: 0,
+   health: 0,
+   attack: '+0',
 };
 
 export default CharacterCard;

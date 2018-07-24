@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CharacterCard from './CharacterCard';
-import CharacterCardInput from './CharacterCardInput';
+//import CharacterCardInput from './CharacterCardInput';
 
 //Initiative List mapping all characters passed in
 class InitiativeList extends React.Component {
@@ -12,7 +12,7 @@ class InitiativeList extends React.Component {
    }
 
    render() {
-      const { characters, updateInitiativeList } = this.props;
+      const { characters, updateInitiativeList, removeCharacter } = this.props;
 
       return (
          <div className="initList col row align-items-center">
@@ -36,7 +36,12 @@ class InitiativeList extends React.Component {
                   </div>
                ) : (
                   characters.map((char, i) => (
-                     <CharacterCard key={char.id} {...char} index={i} />
+                     <CharacterCard
+                        key={char.id}
+                        {...char}
+                        index={i}
+                        removeCharacter={removeCharacter}
+                     />
                   ))
                )}
             </div>
@@ -57,6 +62,7 @@ class InitiativeList extends React.Component {
 InitiativeList.propTypes = {
    characters: PropTypes.array.isRequired,
    updateInitiativeList: PropTypes.func.isRequired,
+   removeCharacter: PropTypes.func.isRequired,
 };
 
 export default InitiativeList;

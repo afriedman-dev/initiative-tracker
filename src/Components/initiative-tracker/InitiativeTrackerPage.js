@@ -16,42 +16,54 @@ class InitiativeTrackerPage extends Component {
    }
 
    initiativeListIsValid = () => {
-      return this.props.initiativeList.length > 0;
+      const { initiativeList } = this.props;
+      return initiativeList.length > 0;
    };
 
    updateInitiativeList = dir => {
+      const { initiativeList, initiativeListIndex, actions } = this.props;
       if (this.initiativeListIsValid()) {
          if (dir === 'forward') {
             let increment = this.resetIndex(
-               this.props.initiativeList.length - 1,
-               this.props.initiativeListIndex
+               initiativeList.length - 1,
+               initiativeListIndex
             );
-            this.props.actions.incrementInitiativeList(increment);
+            actions.incrementInitiativeList(increment);
          } else {
-            this.props.actions.decrementInitiativeList(this.checkNewIndex());
+            actions.decrementInitiativeList(this.checkNewIndex());
          }
-         this.props.actions.calculateProgress();
+         actions.calculateProgress();
       }
    };
 
    checkNewIndex = () => {
-      let newIndex = this.props.initiativeListIndex - 1;
+      const { initiativeList, initiativeListIndex, actions } = this.props;
+      let newIndex = initiativeListIndex - 1;
 
       if (newIndex === -1) {
-         newIndex = this.props.initiativeList.length - 1;
-         this.props.actions.updateTurnCount(-1);
+         newIndex = initiativeList.length - 1;
+         actions.updateTurnCount(-1);
       }
 
       return newIndex;
    };
 
    resetIndex = (len, curInd) => {
+      const { actions } = this.props;
       if (curInd === len) {
-         this.props.actions.resetIndex();
-         this.props.actions.updateTurnCount(1);
+         actions.resetIndex();
+         actions.updateTurnCount(1);
          return 0;
       }
       return 1;
+   };
+
+   removeCharacter = index => {
+      const { actions } = this.props;
+      actions.removeCharacter(index);
+      actions.resetIndex();
+      actions.sortInitiativeList();
+      actions.calculateProgress();
    };
 
    render() {
@@ -73,6 +85,7 @@ class InitiativeTrackerPage extends Component {
                   <InitiativeList
                      characters={initiativeList}
                      updateInitiativeList={this.updateInitiativeList}
+                     removeCharacter={this.removeCharacter}
                   />
                </section>
                <section className="row">
@@ -89,7 +102,6 @@ class InitiativeTrackerPage extends Component {
 }
 
 InitiativeTrackerPage.propTypes = {
-   characters: PropTypes.array.isRequired,
    initiativeList: PropTypes.array.isRequired,
    initiativeListIndex: PropTypes.number.isRequired,
    progress: PropTypes.number.isRequired,
@@ -100,7 +112,6 @@ InitiativeTrackerPage.propTypes = {
 
 function mapStateToProps(state) {
    return {
-      characters: state.characters,
       initiativeList: state.initiative.initiativeList,
       initiativeListIndex: state.initiative.initiativeListIndex,
       progress: state.initiative.progress,

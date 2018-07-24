@@ -14,6 +14,14 @@ export default function initiativeReducer(
             initiativeList: [...state.initiativeList, newChar],
          });
       }
+      case actions.REMOVE_CHARACTER: {
+         let newList = [...state.initiativeList];
+         newList = newList.filter((_, i) => i !== action.index);
+
+         return Object.assign({}, state, {
+            initiativeList: newList,
+         });
+      }
       case actions.SORT_INITIATIVE_LIST:
          return Object.assign({}, state, {
             initiativeList: state.initiativeList.sort(function(a, b) {
@@ -21,7 +29,7 @@ export default function initiativeReducer(
             }),
          });
       case actions.INCREMENT_INITIATIVE_LIST: {
-         let incList = state.initiativeList;
+         let incList = [...state.initiativeList];
          let shiftedChar = incList.shift();
 
          incList.push(shiftedChar);
@@ -32,7 +40,7 @@ export default function initiativeReducer(
          });
       }
       case actions.DECREMENT_INITIATIVE_LIST: {
-         let decList = state.initiativeList;
+         let decList = [...state.initiativeList];
          let poppedChar = decList.pop();
 
          decList.unshift(poppedChar);
@@ -60,11 +68,3 @@ export default function initiativeReducer(
          return state;
    }
 }
-
-//   removeChar = (index) => {
-//     this.setState(prevState => ({
-//       charList: prevState.charList.filter((_, i) => i !== index)
-//     }))
-
-//     this.updateCharList();
-//   };

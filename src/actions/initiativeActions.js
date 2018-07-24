@@ -4,8 +4,8 @@ export function addCharacter(char) {
    return { type: actions.ADD_CHARACTER, char };
 }
 
-export function removeCharacter(char) {
-   return { type: actions.REMOVE_CHARACTER, char };
+export function removeCharacter(index) {
+   return { type: actions.REMOVE_CHARACTER, index };
 }
 
 export function sortInitiativeList() {

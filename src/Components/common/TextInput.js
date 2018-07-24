@@ -30,11 +30,12 @@ TextInput.propTypes = {
    onChange: PropTypes.func.isRequired,
    placeholder: PropTypes.string,
    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-   error: PropTypes.object.isRequired,
+   error: PropTypes.object,
 };
 
 TextInput.defaultProps = {
    placeholder: '',
+   error: null,
 };
 
 export default TextInput;
