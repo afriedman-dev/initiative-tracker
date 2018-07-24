@@ -9,12 +9,6 @@ import TurnCounter from './TurnCounter';
 import CharacterList from '../character-list/CharacterList';
 
 class InitiativeTrackerPage extends Component {
-   constructor(props, context) {
-      super(props, context);
-
-      this.state = {};
-   }
-
    initiativeListIsValid = () => {
       const { initiativeList } = this.props;
       return initiativeList.length > 0;

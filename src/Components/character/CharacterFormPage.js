@@ -10,8 +10,10 @@ class CharacterFormPage extends React.Component {
    constructor(props, context) {
       super(props, context);
 
+      const { char } = this.props;
+
       this.state = {
-         char: Object.assign({}, this.props.char),
+         char: Object.assign({}, char),
          errors: {},
          saving: false,
       };
@@ -21,21 +23,22 @@ class CharacterFormPage extends React.Component {
    }
 
    componentWillReceiveProps(nextProps) {
-      if (this.props.char.id !== nextProps.char.id) {
+      const { char } = this.props;
+      if (char.id !== nextProps.char.id) {
          //populate form when existing char is loaded directly
          this.setState({ char: Object.assign({}, nextProps.char) });
       }
    }
 
    onFieldChange(e) {
+      const { char } = this.state;
       const field = e.target.name;
-      let char = this.state.char;
       char[field] = e.target.value;
       return this.setState({ char: char });
    }
 
    checkCharImg = () => {
-      let char = this.state.char;
+      const { char } = this.state;
 
       if (char.charImg === '') {
          char.charImg = 'http://vopool.net/images/diger.png';
@@ -45,17 +48,20 @@ class CharacterFormPage extends React.Component {
    };
 
    handleSubmit = e => {
+      const { actions } = this.props;
+      const { char } = this.state;
       e.preventDefault();
       this.setState({ saving: true });
 
       if (!this.formIsValid()) {
+         this.setState({ saving: false });
          return;
       }
 
       this.checkCharImg();
 
-      this.props.actions
-         .saveCharacter(this.state.char)
+      actions
+         .saveCharacter(char)
          .then(() => this.redirect())
          .catch(error => {
             this.setState({ saving: false });
@@ -64,11 +70,17 @@ class CharacterFormPage extends React.Component {
    };
 
    formIsValid() {
+      const { char } = this.state;
       let formIsValid = true;
       let errors = {};
 
-      if (this.state.char.name.length < 2) {
+      if (char.name.length < 2) {
          errors.name = 'Name must be at least 2 characters.';
+         formIsValid = false;
+      }
+
+      if (!char.order.length) {
+         errors.order = 'The character must have an initiative.';
          formIsValid = false;
       }
 
@@ -77,8 +89,9 @@ class CharacterFormPage extends React.Component {
    }
 
    redirect() {
+      const { history } = this.props;
       this.setState({ saving: false });
-      this.props.history.push('/');
+      history.push('/');
    }
 
    render() {

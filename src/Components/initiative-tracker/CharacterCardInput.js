@@ -14,6 +14,7 @@ const CharacterCardInput = ({
    attack,
    id,
    errors,
+   removeCharacter,
 }) => {
    let cardClass = 'charCard card pullUp';
 
@@ -21,9 +22,14 @@ const CharacterCardInput = ({
       cardClass += ' current-card floating';
    }
 
+   const remove = () => {
+      removeCharacter(index);
+   };
+
    return (
       <div className="col ml-auto">
          <div className={cardClass}>
+            <button type="button" className="btn close-btn" onClick={remove} />
             <img
                className="charImg card-img-top"
                src={charImg}
@@ -89,6 +95,7 @@ CharacterCardInput.propTypes = {
    attack: PropTypes.string.isRequired,
    id: PropTypes.string.isRequired,
    errors: PropTypes.object,
+   removeCharacter: PropTypes.func.isRequired,
 };
 
 CharacterCardInput.defaultProps = {
