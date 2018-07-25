@@ -31,7 +31,7 @@ class CharacterList extends React.Component {
                      <img src={char.charImg} alt="Character sidelist" />
                   </div>
                   <div className="col-9 text-left char-list-name pl-3">
-                     <h5>{char.name + ' ' + char.id}</h5>
+                     <h5>{char.name}</h5>
                   </div>
                </div>
             </button>

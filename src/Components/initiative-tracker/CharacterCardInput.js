@@ -46,7 +46,7 @@ class CharacterCardInput extends Component {
       let formIsValid = true;
       let errors = {};
 
-      if (!char.order.length) {
+      if (char.order === '' || char.order === null) {
          errors.order = 'The character must have an initiative.';
          formIsValid = false;
       }
@@ -63,7 +63,7 @@ class CharacterCardInput extends Component {
    }
 
    render() {
-      const { index, removeCharacter } = this.props;
+      const { index, flipCard } = this.props;
       const { char, errors, saving } = this.state;
 
       let cardClass = 'charCard card pullUp';
@@ -72,8 +72,8 @@ class CharacterCardInput extends Component {
          cardClass += ' current-card floating';
       }
 
-      const remove = () => {
-         removeCharacter(index);
+      const flip = () => {
+         flipCard(char.id);
       };
 
       return (
@@ -81,8 +81,8 @@ class CharacterCardInput extends Component {
             <div className={cardClass}>
                <button
                   type="button"
-                  className="btn close-btn"
-                  onClick={remove}
+                  className="btn undo-btn fas fa-undo"
+                  onClick={flip}
                />
                <img
                   className="charImg card-img-top"
@@ -90,10 +90,7 @@ class CharacterCardInput extends Component {
                   alt="Character Card"
                />
                <div className="card-body">
-                  <h5 className="card-title">
-                     {char.name}
-                     {char.id > 0 ? char.id : ''}
-                  </h5>
+                  <h5 className="card-title">{char.name}</h5>
                </div>
                <ul className="list-group list-group-flush">
                   <li className="list-group-item">
@@ -151,7 +148,6 @@ CharacterCardInput.propTypes = {
    index: PropTypes.number.isRequired,
    char: PropTypes.object.isRequired,
    onCharacterUpdate: PropTypes.func.isRequired,
-   removeCharacter: PropTypes.func.isRequired,
    flipCard: PropTypes.func.isRequired,
 };
 
