@@ -33,7 +33,7 @@ export default function initiativeReducer(
       case actions.SORT_INITIATIVE_LIST:
          return Object.assign({}, state, {
             initiativeList: state.initiativeList.sort(function(a, b) {
-               return a.order - b.order;
+               return b.order - a.order;
             }),
          });
       case actions.INCREMENT_INITIATIVE_LIST: {

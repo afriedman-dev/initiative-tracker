@@ -143,6 +143,7 @@ function mapStateToProps(state, ownProps) {
       armor: '',
       health: '',
       attack: '',
+      statuses: [],
    };
 
    if (charId && state.characters.length > 0) {

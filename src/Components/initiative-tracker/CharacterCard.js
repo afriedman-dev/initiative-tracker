@@ -1,18 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StatusBar from '../common/StatusBar';
 
 //basic character card
-const CharacterCard = ({
-   index,
-   charImg,
-   name,
-   armor,
-   health,
-   attack,
-   id,
-   removeCharacter,
-   flipCard,
-}) => {
+const CharacterCard = ({ index, char, removeCharacter, flipCard }) => {
    let cardClass = 'charCard card pullUp';
 
    if (index === 0) {
@@ -24,7 +15,7 @@ const CharacterCard = ({
    };
 
    const flip = () => {
-      flipCard(id);
+      flipCard(char.id);
    };
 
    return (
@@ -33,21 +24,22 @@ const CharacterCard = ({
             <button type="button" className="btn close-btn" onClick={remove} />
             <img
                className="charImg card-img-top"
-               src={charImg}
+               src={char.charImg}
                alt="Character Card"
             />
             <div className="card-body">
-               <h5 className="card-title">{name}</h5>
+               <h5 className="card-title">{char.name}</h5>
+               <StatusBar statuses={char.statuses} />
             </div>
             <ul className="list-group list-group-flush">
                <li className="list-group-item">
-                  <strong>AC:</strong> {armor}
+                  <strong>AC:</strong> {char.armor}
                </li>
                <li className="list-group-item">
-                  <strong>HP:</strong> {health}
+                  <strong>HP:</strong> {char.health}
                </li>
                <li className="list-group-item">
-                  <strong>ATTACK:</strong> {attack}
+                  <strong>ATTACK:</strong> {char.attack}
                </li>
             </ul>
             <button
@@ -64,20 +56,9 @@ const CharacterCard = ({
 
 CharacterCard.propTypes = {
    index: PropTypes.number.isRequired,
-   id: PropTypes.string.isRequired,
-   charImg: PropTypes.string.isRequired,
-   name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-   armor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-   health: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-   attack: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+   char: PropTypes.object.isRequired,
    removeCharacter: PropTypes.func.isRequired,
    flipCard: PropTypes.func.isRequired,
-};
-
-CharacterCard.defaultProps = {
-   armor: 0,
-   health: 0,
-   attack: '+0',
 };
 
 export default CharacterCard;

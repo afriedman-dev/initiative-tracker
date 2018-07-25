@@ -5,7 +5,8 @@ const Header = () => {
    return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
          <NavLink to="/" className="navbar-brand mb-0 h1">
-            Initiative-Tracker
+            <i className="fab fa-d-and-d" />
+            &nbsp; Initiative-Tracker
          </NavLink>
          <button
             className="navbar-toggler"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LiveEditInput from '../common/LiveEditInput';
+import Dropdown from '../common/Dropdown';
 
 //basic character card
 class CharacterCardInput extends Component {
@@ -76,6 +77,17 @@ class CharacterCardInput extends Component {
          flipCard(char.id);
       };
 
+      const testDropdownData = {
+         label: 'Status:',
+         default: 'Select Status...',
+         options: [
+            { value: 'Blinded', name: 'Blinded' },
+            { value: 'Charmed', name: 'Charmed' },
+            { value: 'Deafened', name: 'Deafened' },
+            { value: 'Fatigued', name: 'Fatigued' },
+         ],
+      };
+
       return (
          <div>
             <div className={cardClass}>
@@ -93,6 +105,16 @@ class CharacterCardInput extends Component {
                   <h5 className="card-title">{char.name}</h5>
                </div>
                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                     <Dropdown data={testDropdownData} />
+                     <LiveEditInput
+                        name="statusDuration"
+                        label="Duration:"
+                        value={char.statusDuration}
+                        onChange={this.onFieldChange}
+                        error={errors.statusDuration}
+                     />
+                  </li>
                   <li className="list-group-item">
                      <LiveEditInput
                         name="order"

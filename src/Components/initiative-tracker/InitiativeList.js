@@ -54,7 +54,7 @@ class InitiativeList extends React.Component {
                            id={'flip-card-for_' + char.id}>
                            <div className="flip-front">
                               <CharacterCard
-                                 {...char}
+                                 char={char}
                                  index={i}
                                  removeCharacter={removeCharacter}
                                  flipCard={flipCard}

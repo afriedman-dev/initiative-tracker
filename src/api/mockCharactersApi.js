@@ -8,6 +8,7 @@ const characters = [
       health: 25,
       attack: '+7, 2d6+4',
       id: 1,
+      statuses: [],
    },
    {
       name: 'Minotaur',
@@ -18,6 +19,7 @@ const characters = [
       health: 32,
       attack: '+8, 1d10+5',
       id: 2,
+      statuses: ['Blocking'],
    },
    {
       name: 'Elrik Battleborne',
@@ -28,6 +30,7 @@ const characters = [
       health: 28,
       attack: '+6, 2d6+4 +1d4 fire',
       id: 3,
+      statuses: [],
    },
 ];
 

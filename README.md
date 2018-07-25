@@ -1,6 +1,5 @@
 ## Initiative Tracker README
 TODO:
- - Update editing to either edit DB copy or edit copy in initiative list
  - Add vertical bar before the first character to show the start of initiative order
  - Track conditions and auto update with turn count
     - Two clicks to add, optional timer, one click to remove
