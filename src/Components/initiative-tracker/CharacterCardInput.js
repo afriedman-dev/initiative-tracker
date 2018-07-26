@@ -78,13 +78,39 @@ class CharacterCardInput extends Component {
       };
 
       const testDropdownData = {
-         label: 'Status:',
-         default: 'Select Status...',
          options: [
-            { value: 'Blinded', name: 'Blinded' },
-            { value: 'Charmed', name: 'Charmed' },
-            { value: 'Deafened', name: 'Deafened' },
-            { value: 'Fatigued', name: 'Fatigued' },
+            'Eye',
+            'Blind',
+            'Blinded',
+            'Flying',
+            'Fire',
+            'Drunk',
+            'Exhaused',
+            'Charmed',
+            'Healing',
+            'Stunned',
+            'Heal',
+            'Silenced',
+            'Fatigued',
+            'Silenced2',
+            'NotEqual',
+            'Square',
+            'Poop',
+            'Confused',
+            'Sad',
+            'Shield',
+            'Blocking',
+            'Incapacitated',
+            'Chilled',
+            'Star',
+            'Protected',
+            'Radiant',
+            'Stealth',
+            'Petrified',
+            'Water',
+            'Cover',
+            'Paralyzed',
+            'Poisoned',
          ],
       };
 
@@ -107,13 +133,6 @@ class CharacterCardInput extends Component {
                <ul className="list-group list-group-flush">
                   <li className="list-group-item">
                      <Dropdown data={testDropdownData} />
-                     <LiveEditInput
-                        name="statusDuration"
-                        label="Duration:"
-                        value={char.statusDuration}
-                        onChange={this.onFieldChange}
-                        error={errors.statusDuration}
-                     />
                   </li>
                   <li className="list-group-item">
                      <LiveEditInput

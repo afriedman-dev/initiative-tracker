@@ -16,6 +16,16 @@ body {
    height: 100%;
 }
 
+/* Collapse Carrot */
+#collapse-carrot::after {
+   content: '\f105';
+}
+
+/* Collapse Carrot */
+#collapse-carrot.active::after {
+   content: '\f106';
+}
+
 /*Animation classes*/
 /*
 ==============================================
