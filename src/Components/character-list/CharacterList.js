@@ -6,73 +6,64 @@ import * as initiativeActions from '../../actions/initiativeActions';
 import Loader from '../common/Loader';
 
 class CharacterList extends React.Component {
-   addCharacter = char => {
-      const { actions } = this.props;
-      actions.addCharacter(char);
-      actions.resetIndex();
-      actions.sortInitiativeList();
-      actions.calculateProgress();
-   };
+  addCharacter = char => {
+    const { actions } = this.props;
+    actions.addCharacter(char);
+    actions.resetIndex();
+    actions.sortInitiativeList();
+    actions.calculateProgress();
+  };
 
-   mapCharRow = function(addChar) {
-      return function(char) {
-         const add = () => {
-            addChar(char);
-         };
-         return (
-            <button
-               type="button"
-               key={char.id}
-               id="char-list-row"
-               className="card col-12 remove-button-styles"
-               onClick={add}>
-               <div className="card-header row no-gutters">
-                  <div className="col-3 py-0 pr-auto mr-auto">
-                     <img src={char.charImg} alt="Character sidelist" />
-                  </div>
-                  <div className="col-9 text-left char-list-name pl-3">
-                     <h5>{char.name}</h5>
-                  </div>
-               </div>
-            </button>
-         );
+  mapCharRow = function() {
+    return function(char) {
+      const add = () => {
+        this.addChar(char);
       };
-   };
-
-   render() {
-      const { characters, loading } = this.props;
-
       return (
-         <div className="row no-gutters">
-            {loading ? (
-               <Loader />
-            ) : (
-               characters.map(this.mapCharRow(this.addCharacter))
-            )}
-         </div>
+        <button
+          type="button"
+          key={char.id}
+          id="char-list-row"
+          className="card col-12 remove-button-styles"
+          onClick={add}
+        >
+          <div className="card-header row no-gutters">
+            <div className="col-3 py-0 pr-auto mr-auto">
+              <img src={char.charImg} alt="Character sidelist" />
+            </div>
+            <div className="col-9 text-left char-list-name pl-3">
+              <h5>{char.name}</h5>
+            </div>
+          </div>
+        </button>
       );
-   }
+    };
+  };
+
+  render() {
+    const { characters, loading } = this.props;
+
+    return (
+      <div className="row no-gutters">
+        {loading ? <Loader /> : characters.map(this.mapCharRow())}
+      </div>
+    );
+  }
 }
 
 CharacterList.propTypes = {
-   characters: PropTypes.array.isRequired,
-   loading: PropTypes.bool.isRequired,
-   actions: PropTypes.object.isRequired,
+  characters: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-   return {
-      characters: state.characters,
-   };
-}
+const mapStateToProps = ({ characters }) => ({ characters });
 
-function mapDispatchToProps(dispatch) {
-   return {
-      actions: bindActionCreators(initiativeActions, dispatch),
-   };
-}
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(initiativeActions, dispatch)
+});
 
 export default connect(
-   mapStateToProps,
-   mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CharacterList);
