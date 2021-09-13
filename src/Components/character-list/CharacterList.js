@@ -2,10 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import * as initiativeActions from '../../actions/initiativeActions';
 import Loader from '../common/Loader';
 
 class CharacterList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.addCharacter = this.addCharacter.bind(this);
+    this.renderCharacterRow = this.renderCharacterRow.bind(this);
+  }
+
   addCharacter = char => {
     const { actions } = this.props;
     actions.addCharacter(char);
@@ -14,10 +22,9 @@ class CharacterList extends React.Component {
     actions.calculateProgress();
   };
 
-  mapCharRow = function() {
-    return function(char) {
+  renderCharacterRow = (char) => {
       const add = () => {
-        this.addChar(char);
+        this.addCharacter(char);
       };
       return (
         <button
@@ -38,14 +45,18 @@ class CharacterList extends React.Component {
         </button>
       );
     };
-  };
 
   render() {
     const { characters, loading } = this.props;
 
     return (
       <div className="row no-gutters">
-        {loading ? <Loader /> : characters.map(this.mapCharRow())}
+        <div className="col-8 offset-2 addCharacterButton">
+          <Link to="/character" className="btn-lg btn-secondary">
+            Add Character
+          </Link>
+        </div>
+        {loading ? <Loader /> : characters.map(char => this.renderCharacterRow(char))}
       </div>
     );
   }

@@ -25,16 +25,15 @@ class CharacterFormPage extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { char } = this.props;
     if (char.id !== nextProps.char.id) {
-      //populate form when existing char is loaded directly
+      // populate form when existing char is loaded directly
       this.setState({ char: { ...nextProps.char } });
     }
   }
 
   onFieldChange({ target: { name, value } }) {
     const { char } = this.state;
-    const field = name;
-    char[field] = value;
-    return this.setState({ char: char });
+    char[name] = value; // mutating?
+    return this.setState({ char });
   }
 
   checkCharImg = () => {
@@ -123,22 +122,17 @@ CharacterFormPage.propTypes = {
   characterActions: PropTypes.object.isRequired
 };
 
-function getCharacterById(characters, id) {
-  const char = characters.filter(char => char.id == id);
-  if (char) return char[0]; //filter returns array, grabbing first elem
-  return null;
-}
+const getCharacterById = (characters, id) => characters.find(char => char.id === id);
 
-function mapStateToProps(
+const mapStateToProps = (
   { characters },
   {
     match: {
       params: { id: charId }
     }
   }
-) {
-  //from the path '/character/:id'
-
+) => {
+  // from the path '/character/:id'
   const char =
     charId && characters.length > 0
       ? getCharacterById(characters, charId)
@@ -155,11 +149,9 @@ function mapStateToProps(
   return { char };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
+const mapDispatchToProps = (dispatch) => ({
     characterActions: bindActionCreators(CharacterActions, dispatch)
-  };
-}
+  });
 
 export default withRouter(
   connect(

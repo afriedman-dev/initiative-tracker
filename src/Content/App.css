@@ -125,3 +125,8 @@
 .turn-counter {
    flex-direction: row;
 }
+
+.addCharacterButton {
+   display: flex;
+   padding: 8px 0px;
+}

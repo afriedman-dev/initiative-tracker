@@ -76,7 +76,7 @@ class CharactersApi {
    }
 
    static deleteChar(charId) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
          setTimeout(() => {
             const indexOfCharToDelete = characters.findIndex(char => {
                return char.id === charId;

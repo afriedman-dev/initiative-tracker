@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CharacterCard from './CharacterCard';
 import CharacterCardInput from './CharacterCardInput';
 
-//Initiative List mapping all characters passed in
+// Initiative List mapping all characters passed in
 class InitiativeList extends React.Component {
   constructor(props, context) {
     super(props, context);

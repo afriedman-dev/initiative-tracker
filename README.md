@@ -1,15 +1,21 @@
-## Initiative Tracker README
+# Initiative Tracker README
+
 TODO:
- - Add vertical bar before the first character to show the start of initiative order
- - Track conditions and auto update with turn count
-    - Two clicks to add, optional timer, one click to remove
- - Allow users to pick images from dropdown list
- - Allow users to drag/drop cards from side menu
- - Add expandable character details to bottom of card
- - Enable editing of cards/characters with https://github.com/kaivi/riek
- - Reformat character cards to host more relevant info
+
+- Add vertical bar before the first character to show the start of initiative order
+- Track conditions and auto update with turn count
+  - Two clicks to add, optional timer, one click to remove
+- Allow users to pick images from dropdown list
+- Allow users to drag/drop cards from side menu
+- Add expandable character details to bottom of card
+- Enable editing of cards/characters with https://github.com/kaivi/riek
+- Reformat character cards to host more relevant info
+- Add DB
+- Add auth (DM role, player role (auth optional?))
+- Random encounter fill-in
 
 ## React README
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

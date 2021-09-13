@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LiveEditInput from '../common/LiveEditInput';
-import Dropdown from '../common/Dropdown';
+import StatusDropdown from '../common/StatusDropdown';
 
 //basic character card
 class CharacterCardInput extends Component {
@@ -124,7 +124,7 @@ class CharacterCardInput extends Component {
           </div>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <Dropdown data={testDropdownData} />
+              <StatusDropdown data={testDropdownData} />
             </li>
             <li className="list-group-item">
               <LiveEditInput

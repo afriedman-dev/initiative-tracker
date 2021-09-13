@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 
-//Form component for adding new characters
+// Form component for adding new characters
 const CharacterForm = ({ char, onSubmit, onFieldChange, errors }) => {
   return (
     <div className="col-6">

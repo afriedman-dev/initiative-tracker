@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as InitiativeActions from '../../actions/initiativeActions';
@@ -47,10 +46,10 @@ class InitiativeTrackerPage extends Component {
     return newIndex;
   };
 
-  updateInitiativeList = dir => {
+  updateInitiativeList = direction => {
     const { initiativeList, initiativeListIndex, initiativeActions } = this.props;
     if (this.initiativeListIsValid()) {
-      if (dir === 'forward') {
+      if (direction === 'forward') {
         let increment = this.resetIndex(initiativeList.length - 1, initiativeListIndex);
         initiativeActions.incrementInitiativeList(increment);
       } else {
@@ -85,13 +84,6 @@ class InitiativeTrackerPage extends Component {
               removeCharacter={this.removeCharacter}
               onCharacterUpdate={this.onCharacterUpdate}
             />
-          </section>
-          <section className="row">
-            <div className="col-3 offset-1">
-              <Link to="/character" className="btn-lg btn-primary">
-                Add Character
-              </Link>
-            </div>
           </section>
         </section>
       </div>

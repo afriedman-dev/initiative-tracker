@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Dropdown = ({ data }) => {
+const StatusDropdown = ({ data }) => {
   const statusDict = {
     Eye: 'fa-eye',
     Blind: 'fa-eye-slash',
@@ -43,7 +43,7 @@ const Dropdown = ({ data }) => {
 
     carrot.classList.toggle('active');
 
-    statusList.style.display = statusList.style.display == 'none' ? 'block' : 'none';
+    statusList.style.display = statusList.style.display === 'none' ? 'block' : 'none';
   };
 
   return (
@@ -70,6 +70,6 @@ const Dropdown = ({ data }) => {
   );
 };
 
-Dropdown.propTypes = { data: PropTypes.object.isRequired };
+StatusDropdown.propTypes = { data: PropTypes.object.isRequired };
 
-export default Dropdown;
+export default StatusDropdown;
