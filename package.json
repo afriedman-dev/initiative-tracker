@@ -5,6 +5,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "chalk": "^2.4.1",
+    "knex": "^0.95.11",
+    "pg": "^8.7.1",
     "prop-types": "^15.6.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -19,6 +21,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "migrate:make": "knex migrate:make --knexfile db/knexfile.js",
+    "migrate": "knex migrate:latest --knexfile db/knexfile.js",
+    "migrate:rollback": "knex migrate:rollback --knexfile db/knexfile.js",
+    "seed:make": "knex seed:make --knexfile db/knexfile.js",
+    "seed:run": "knex seed:run --knexfile db/knexfile.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --ext .js,.jsx --fix"
   },

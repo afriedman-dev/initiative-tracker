@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../Content/App.css';
+import '../content/App.css';
 import Header from './common/Header';
 import CharacterFormPage from './character/CharacterFormPage';
 import InitiativeTrackerPage from './initiative-tracker/InitiativeTrackerPage';

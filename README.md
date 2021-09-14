@@ -12,7 +12,13 @@ TODO:
 - Reformat character cards to host more relevant info
 - Add DB
 - Add auth (DM role, player role (auth optional?))
-- Random encounter fill-in
+- Random encounter fill-in (auto add 1d4 bugbears, etc)
+- Hide character cards if there are too many to fit on screen (i.e. if index > 6, hide)
+- implement sockets with shareable code
+- allow users to save characters to db
+- allow DMs to save parties
+- allow DMs to save encounters (prebuilt and current state)
+- allow character to have initiative modifier and roll for them
 
 ## React README
 
