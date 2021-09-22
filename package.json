@@ -2,9 +2,11 @@
   "name": "initiative-tracker",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "chalk": "^2.4.1",
+    "express": "^4.17.1",
     "knex": "^0.95.11",
     "pg": "^8.7.1",
     "prop-types": "^15.6.2",
@@ -17,15 +19,16 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "api": "nodemon src/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "migrate:make": "knex migrate:make --knexfile db/knexfile.js",
     "migrate": "knex migrate:latest --knexfile db/knexfile.js",
-    "migrate:rollback": "knex migrate:rollback --knexfile db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile db/knexfile.js",
     "seed:make": "knex seed:make --knexfile db/knexfile.js",
-    "seed:run": "knex seed:run --knexfile db/knexfile.js",
+    "seed": "knex seed:run --knexfile db/knexfile.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --ext .js,.jsx --fix"
   },
@@ -34,7 +37,8 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.25.1"
+    "eslint-plugin-react": "^7.25.1",
+    "nodemon": "^2.0.12"
   },
   "browserslist": {
     "production": [
